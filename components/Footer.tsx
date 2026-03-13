@@ -16,7 +16,7 @@ export default function Footer() {
             className="font-light text-lg tracking-[0.25em]"
             style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
           >
-            Acne Studios
+            SCENTCEPT
           </Link>
         </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
           <div>
             <h3 className="text-[10px] tracking-[0.2em] uppercase mb-5">Company</h3>
             <ul className="space-y-3">
-              {["About Acne Studios", "Careers", "Press", "Store Locator", "Sustainability"].map((item) => (
+              {["About SCENTCEPT", "Careers", "Press", "Store Locator", "Sustainability"].map((item) => (
                 <li key={item}>
                   <span className="text-xs text-gray-400 cursor-pointer hover:text-black transition-colors duration-200">
                     {item}
@@ -91,7 +91,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-6 border-t border-black/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="text-[10px] text-gray-400 tracking-wide">
-            © {new Date().getFullYear()} Acne Studios. All rights reserved.
+            © {new Date().getFullYear()} SCENTCEPT. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-5">
             {["Privacy Policy", "Terms & Conditions", "Cookie Settings", "Accessibility"].map((item) => (

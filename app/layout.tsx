@@ -12,8 +12,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Acne Studios",
-  description: "Acne Studios — Minimal luxury fashion",
+  title: "SCENTCEPT",
+  description: "SCENTCEPT — Minimal luxury fashion",
 };
 
 export default function RootLayout({

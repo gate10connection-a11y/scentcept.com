@@ -45,7 +45,7 @@ export default function Navbar() {
           className="absolute left-1/2 -translate-x-1/2 font-serif font-light text-base tracking-[0.25em] whitespace-nowrap"
           style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
         >
-          Acne Studios
+          SCENTCEPT
         </Link>
 
         {/* Right icons */}
