@@ -89,7 +89,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
   }
 }
 
-const CART_STORAGE_KEY = "acne_studio_cart";
+const CART_STORAGE_KEY = "scentcept_cart";
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] }, () => {
