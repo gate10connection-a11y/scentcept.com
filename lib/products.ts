@@ -1,6 +1,8 @@
 import { Product } from "./types";
+import { sanityClient, urlFor, isSanityConfigured } from "./sanity";
 
-export const products: Product[] = [
+// Mock data (fallback when Sanity is not configured)
+export const mockProducts: Product[] = [
   {
     id: "p001",
     name: "Oversized Wool Coat",
@@ -123,12 +125,92 @@ export const products: Product[] = [
   },
 ];
 
+// Sanity GROQ query for products
+const PRODUCTS_QUERY = `*[_type == "product"] | order(_createdAt desc) {
+  "id": _id,
+  name,
+  price,
+  description,
+  category,
+  "images": images[].asset->url,
+  sizes,
+  isNew,
+  collection,
+  "slug": slug.current
+}`
+
+// Transform Sanity product to our Product type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function transformSanityProduct(item: any): Product {
+  return {
+    id: item.id,
+    name: item.name,
+    price: item.price,
+    description: item.description || '',
+    category: item.category || '',
+    images: item.images || [],
+    sizes: item.sizes || [],
+    isNew: item.isNew || false,
+    collection: item.collection || '',
+  }
+}
+
+// Fetch all products (Sanity if configured, otherwise mock data)
+export async function getProducts(): Promise<Product[]> {
+  if (!isSanityConfigured()) {
+    return mockProducts
+  }
+  try {
+    const data = await sanityClient.fetch<unknown[]>(PRODUCTS_QUERY)
+    if (data && Array.isArray(data) && data.length > 0) {
+      return data.map(transformSanityProduct)
+    }
+    // Fallback to mock data if Sanity returns empty
+    return mockProducts
+  } catch (error) {
+    console.error('Failed to fetch products from Sanity:', error)
+    return mockProducts
+  }
+}
+
+// Sync export for backward compatibility (uses mock data)
+export const products: Product[] = mockProducts
+
 export function getProductById(id: string): Product | undefined {
-  return products.find((p) => p.id === id);
+  return mockProducts.find((p) => p.id === id);
+}
+
+export async function getProductByIdAsync(id: string): Promise<Product | undefined> {
+  if (!isSanityConfigured()) {
+    return mockProducts.find((p) => p.id === id)
+  }
+  try {
+    const query = `*[_type == "product" && _id == $id][0] {
+      "id": _id,
+      name,
+      price,
+      description,
+      category,
+      "images": images[].asset->url,
+      sizes,
+      isNew,
+      collection
+    }`
+    const data = await sanityClient.fetch(query, { id })
+    if (data) return transformSanityProduct(data)
+    return mockProducts.find((p) => p.id === id)
+  } catch {
+    return mockProducts.find((p) => p.id === id)
+  }
 }
 
 export function getNewProducts(): Product[] {
-  return products.filter((p) => p.isNew);
+  return mockProducts.filter((p) => p.isNew);
+}
+
+export async function getNewProductsAsync(): Promise<Product[]> {
+  const all = await getProducts()
+  return all.filter((p) => p.isNew)
 }
 
 export function formatPrice(price: number): string {
@@ -137,3 +219,6 @@ export function formatPrice(price: number): string {
     currency: "KRW",
   }).format(price);
 }
+
+// Re-export urlFor for image URL generation from Sanity
+export { urlFor }
