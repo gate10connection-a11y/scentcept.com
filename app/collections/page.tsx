@@ -15,43 +15,53 @@ export default function CollectionsPage() {
       : products.filter((p) => p.category === selectedCategory);
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-12">
-      {/* Page Header */}
-      <div className="mb-12">
-        <p className="text-xs tracking-widest uppercase text-gray-400 mb-2">
-          FW2024
-        </p>
-        <h1 className="text-2xl tracking-widest uppercase font-light">
+    <div>
+      {/* Header bar — Acne cell style */}
+      <div
+        className="flex items-center justify-between px-6 md:px-10 h-11"
+        style={{ borderBottom: "var(--border)" }}
+      >
+        <span className="text-[10px] tracking-[0.2em] uppercase">
           All Collections
-        </h1>
+        </span>
+        <span className="text-[10px] tracking-[0.15em] text-gray-400">
+          {filtered.length} {filtered.length === 1 ? "item" : "items"}
+        </span>
       </div>
 
-      {/* Filter Bar */}
-      <div className="flex gap-6 overflow-x-auto pb-4 mb-10 border-b border-black/10 scrollbar-none">
+      {/* Filter Bar — Acne cell/tab style with borders */}
+      <div
+        className="flex overflow-x-auto scrollbar-none"
+        style={{ borderBottom: "var(--border)" }}
+      >
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`whitespace-nowrap text-xs tracking-widest uppercase transition-opacity flex-shrink-0 pb-4 -mb-4 border-b-2 ${
+            className={`whitespace-nowrap h-10 px-5 text-[10px] tracking-[0.15em] uppercase transition-colors duration-150 flex-shrink-0 ${
               selectedCategory === cat
-                ? "border-black text-black"
-                : "border-transparent text-gray-400 hover:text-black"
+                ? "bg-black text-white"
+                : "text-gray-500 hover:bg-black hover:text-white"
             }`}
+            style={{ borderRight: "var(--border)" }}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Product Count */}
-      <p className="text-xs text-gray-400 mb-6">
-        {filtered.length} {filtered.length === 1 ? "item" : "items"}
-      </p>
-
-      {/* Product Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {filtered.map((product) => (
-          <ProductCard key={product.id} product={product} />
+      {/* Product Grid — Acne style with cell borders */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {filtered.map((product, i) => (
+          <div
+            key={product.id}
+            style={{
+              borderRight: (i + 1) % 4 !== 0 ? "var(--border)" : "none",
+              borderBottom: "var(--border)",
+            }}
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>

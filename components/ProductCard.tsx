@@ -21,8 +21,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Image — no rounded corners, clean square, Acne style */}
       <div className="relative overflow-hidden bg-[#f5f5f5] aspect-[3/4]">
-        {/* Primary image */}
         <Image
           src={product.images[0]}
           alt={product.name}
@@ -32,7 +32,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           }`}
           sizes="(max-width: 768px) 50vw, 25vw"
         />
-        {/* Secondary image */}
         {secondImage && (
           <Image
             src={secondImage}
@@ -45,9 +44,15 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         )}
       </div>
-      <div className="mt-3">
-        <p className="text-xs font-['Space_Grotesk'] font-medium tracking-tight leading-snug">{product.name}</p>
-        <p className="text-xs text-gray-500 mt-0.5">{formatPrice(product.price)}</p>
+
+      {/* Info — Acne Studios: very small text, tight spacing */}
+      <div className="px-4 py-3 md:px-5 md:py-4">
+        <p className="text-[11px] tracking-[0.01em] leading-snug" style={{ fontFamily: "var(--font-display)" }}>
+          {product.name}
+        </p>
+        <p className="text-[11px] text-gray-500 mt-0.5">
+          {formatPrice(product.price)}
+        </p>
       </div>
     </Link>
   );

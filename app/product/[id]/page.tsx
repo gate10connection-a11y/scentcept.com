@@ -21,9 +21,12 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="max-w-screen-xl mx-auto px-6 py-20 text-center">
-        <p className="text-sm text-gray-400 mb-4">Product not found.</p>
-        <Link href="/collections" className="text-xs tracking-widest uppercase underline">
+      <div className="px-6 md:px-10 py-20 text-center">
+        <p className="text-[11px] text-gray-400 mb-6">Product not found.</p>
+        <Link
+          href="/collections"
+          className="text-[10px] tracking-[0.2em] uppercase border-b border-black pb-0.5"
+        >
           Back to Collections
         </Link>
       </div>
@@ -42,9 +45,12 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-12">
-      {/* Breadcrumb */}
-      <nav className="mb-8 flex items-center gap-2 text-xs text-gray-400">
+    <div>
+      {/* Breadcrumb bar — Acne cell style */}
+      <nav
+        className="flex items-center gap-2 px-6 md:px-10 h-10 text-[10px] text-gray-400"
+        style={{ borderBottom: "var(--border)" }}
+      >
         <Link href="/" className="hover:text-black transition-colors">Home</Link>
         <span>/</span>
         <Link href="/collections" className="hover:text-black transition-colors">Collections</Link>
@@ -52,10 +58,11 @@ export default function ProductPage() {
         <span className="text-black">{product.name}</span>
       </nav>
 
-      <div className="grid md:grid-cols-2 gap-10 lg:gap-20">
-        {/* Images */}
-        <div className="space-y-3">
-          <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
+      <div className="grid md:grid-cols-2">
+        {/* Left — Images stacked vertically, Acne style */}
+        <div style={{ borderRight: "var(--border)" }}>
+          {/* Main image */}
+          <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5]">
             <Image
               src={product.images[selectedImage]}
               alt={product.name}
@@ -65,22 +72,25 @@ export default function ProductPage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
+
+          {/* Thumbnail row */}
           {product.images.length > 1 && (
-            <div className="flex gap-2">
+            <div className="flex" style={{ borderTop: "var(--border)" }}>
               {product.images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`relative w-16 aspect-square overflow-hidden bg-gray-50 border-2 transition-colors ${
-                    selectedImage === i ? "border-black" : "border-transparent"
+                  className={`relative flex-1 aspect-square overflow-hidden bg-[#f5f5f5] transition-opacity ${
+                    selectedImage === i ? "opacity-100" : "opacity-50 hover:opacity-75"
                   }`}
+                  style={{ borderRight: i < product.images.length - 1 ? "var(--border)" : "none" }}
                 >
                   <Image
                     src={img}
                     alt={`${product.name} ${i + 1}`}
                     fill
                     className="object-cover"
-                    sizes="64px"
+                    sizes="100px"
                   />
                 </button>
               ))}
@@ -88,84 +98,97 @@ export default function ProductPage() {
           )}
         </div>
 
-        {/* Product Info */}
+        {/* Right — Product Info, Acne style: clean, structured */}
         <div className="flex flex-col">
-          <p className="text-xs tracking-widest uppercase text-gray-400 mb-2">
-            {product.category}
-          </p>
-          <h1 className="text-2xl font-light mb-3">{product.name}</h1>
-          <p className="text-lg mb-8">{formatPrice(product.price)}</p>
+          {/* Product header */}
+          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+            <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-2">
+              {product.category}
+            </p>
+            <h1
+              className="text-lg md:text-xl font-medium tracking-[-0.01em] mb-2"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {product.name}
+            </h1>
+            <p className="text-[13px]">{formatPrice(product.price)}</p>
+          </div>
 
           {/* Size Selection */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-xs tracking-widest uppercase">Size</p>
-              <button className="text-xs text-gray-400 underline hover:text-black transition-colors">
+          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-[10px] tracking-[0.2em] uppercase">Size</p>
+              <button className="text-[10px] text-gray-400 underline hover:text-black transition-colors">
                 Size Guide
               </button>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {product.sizes.map((size) => (
+            <div className="flex flex-wrap gap-0">
+              {product.sizes.map((size, i) => (
                 <button
                   key={size}
                   onClick={() => {
                     setSelectedSize(size);
                     setSizeError(false);
                   }}
-                  className={`px-4 py-2 text-xs border transition-colors ${
+                  className={`h-10 px-5 text-[10px] tracking-[0.1em] uppercase transition-colors duration-150 ${
                     selectedSize === size
-                      ? "border-black bg-black text-white"
-                      : "border-gray-200 hover:border-black"
+                      ? "bg-black text-white"
+                      : "hover:bg-black hover:text-white"
                   }`}
+                  style={{
+                    border: "var(--border)",
+                    marginRight: "-1px",
+                    marginBottom: "-1px",
+                  }}
                 >
                   {size}
                 </button>
               ))}
             </div>
             {sizeError && (
-              <p className="text-xs text-red-500 mt-2">Please select a size.</p>
+              <p className="text-[10px] text-red-500 mt-3">Please select a size.</p>
             )}
           </div>
 
           {/* Add to Cart */}
-          <button
-            onClick={handleAddToCart}
-            className={`w-full py-4 text-xs tracking-widest uppercase transition-all duration-300 mb-3 ${
-              added
-                ? "bg-gray-800 text-white"
-                : "bg-black text-white hover:bg-gray-800"
-            }`}
-          >
-            {added ? "Added to Cart ✓" : "Add to Cart"}
-          </button>
-
-          {/* View Cart */}
-          {added && (
+          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
             <button
-              onClick={() => router.push("/cart")}
-              className="w-full py-4 text-xs tracking-widest uppercase border border-black hover:bg-black hover:text-white transition-all duration-300 mb-3"
+              onClick={handleAddToCart}
+              className={`w-full h-12 text-[10px] tracking-[0.2em] uppercase transition-all duration-200 ${
+                added
+                  ? "bg-gray-800 text-white"
+                  : "bg-black text-white hover:bg-gray-900"
+              }`}
             >
-              View Cart
+              {added ? "Added to Cart ✓" : "Add to Cart"}
             </button>
-          )}
+
+            {added && (
+              <button
+                onClick={() => router.push("/cart")}
+                className="w-full h-12 mt-2 text-[10px] tracking-[0.2em] uppercase border border-black hover:bg-black hover:text-white transition-all duration-200"
+              >
+                View Cart
+              </button>
+            )}
+          </div>
 
           {/* Description */}
-          <div className="mt-8 pt-8 border-t border-black/10">
-            <button className="flex items-center justify-between w-full text-xs tracking-widest uppercase mb-4">
-              Description
-            </button>
-            <p className="text-sm text-gray-600 leading-relaxed">
+          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+            <p className="text-[10px] tracking-[0.2em] uppercase mb-4">Description</p>
+            <p className="text-[12px] text-gray-600 leading-relaxed">
               {product.description}
             </p>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-black/10">
-            <p className="text-xs tracking-widest uppercase mb-3">Details</p>
-            <ul className="space-y-1">
-              <li className="text-xs text-gray-500">Style: {product.id.toUpperCase()}</li>
-              <li className="text-xs text-gray-500">Collection: {product.collection}</li>
-              <li className="text-xs text-gray-500">Free returns within 30 days</li>
-            </ul>
+          {/* Details */}
+          <div className="p-6 md:p-10">
+            <p className="text-[10px] tracking-[0.2em] uppercase mb-4">Details</p>
+            <div className="space-y-1.5">
+              <p className="text-[11px] text-gray-500">Style: {product.id.toUpperCase()}</p>
+              <p className="text-[11px] text-gray-500">Collection: {product.collection}</p>
+              <p className="text-[11px] text-gray-500">Free returns within 30 days</p>
+            </div>
           </div>
         </div>
       </div>
