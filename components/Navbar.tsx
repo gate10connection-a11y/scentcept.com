@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 
+const border = "1px solid #e0e0e0";
+
 const megaMenuData: Record<string, { title: string; links: { label: string; href: string }[] }[]> = {
   "SHOP WOMEN": [
     { title: "Clothing", links: [
@@ -12,13 +14,11 @@ const megaMenuData: Record<string, { title: string; links: { label: string; href
       { label: "Knitwear", href: "/women?cat=Tops" },
       { label: "Trousers", href: "/women?cat=Bottoms" },
       { label: "Denim", href: "/women?cat=Bottoms" },
-      { label: "Skirts", href: "/women?cat=Bottoms" },
     ]},
     { title: "Accessories", links: [
       { label: "Bags", href: "/women?cat=Bags" },
       { label: "Scarves", href: "/women?cat=Accessories" },
       { label: "Jewellery", href: "/women?cat=Accessories" },
-      { label: "Sunglasses", href: "/women?cat=Accessories" },
     ]},
     { title: "Shoes", links: [
       { label: "Boots", href: "/women?cat=Footwear" },
@@ -61,34 +61,44 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-white"
+      style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, backgroundColor: "#fff" }}
       onMouseLeave={() => setActiveMega(null)}
     >
       {/* Main nav bar */}
-      <div className="flex items-center h-[44px] ab-b">
+      <div style={{ display: "flex", alignItems: "center", height: "44px", borderBottom: border }}>
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center h-full">
+        <nav style={{ display: "flex", alignItems: "center", height: "100%" }} className="hidden md:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="h-full flex items-center ab-r"
-              style={{ padding: "0 24px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
+              style={{
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                padding: "0 24px",
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                borderRight: border,
+                color: "#000",
+                textDecoration: "none",
+              }}
               onMouseEnter={() => setActiveMega(megaMenuData[item.label] ? item.label : null)}
             >
-              <span className="hover:opacity-50 transition-opacity">{item.label}</span>
+              {item.label}
             </Link>
           ))}
         </nav>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden h-full flex items-center ab-r"
-          style={{ padding: "0 20px" }}
+          style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderRight: border, background: "none", border: "none", borderRightStyle: "solid", borderRightWidth: "1px", borderRightColor: "#e0e0e0", cursor: "pointer" }}
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg style={{ width: "16px", height: "16px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -98,32 +108,41 @@ export default function Navbar() {
         </button>
 
         {/* Center logo */}
-        <div className="flex-1" />
+        <div style={{ flex: 1 }} />
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" as const }}
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#000",
+            textDecoration: "none",
+          }}
         >
           Scentcept
         </Link>
-        <div className="flex-1" />
+        <div style={{ flex: 1 }} />
 
         {/* Right icons */}
-        <div className="flex items-center h-full">
-          <Link href="/collections" aria-label="Search" className="h-full flex items-center ab-l" style={{ padding: "0 20px" }}>
-            <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
+          <Link href="/collections" aria-label="Search" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border }}>
+            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="7" strokeWidth={1.3} />
               <path d="M16.5 16.5L21 21" strokeWidth={1.3} strokeLinecap="round" />
             </svg>
           </Link>
-          <Link href="/about" aria-label="Account" className="hidden md:flex h-full items-center ab-l" style={{ padding: "0 20px" }}>
-            <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Link href="/about" aria-label="Account" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border }} className="hidden md:flex">
+            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" strokeWidth={1.3} />
             </svg>
           </Link>
-          <Link href="/cart" aria-label="Bag" className="h-full flex items-center relative ab-l" style={{ padding: "0 20px" }}>
-            <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Link href="/cart" aria-label="Bag" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, position: "relative" }}>
+            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
               <line x1="3" y1="6" x2="21" y2="6" strokeWidth={1.3} />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M16 10a4 4 0 0 1-8 0" />
@@ -140,7 +159,8 @@ export default function Navbar() {
       {/* Mega Menu Dropdown */}
       {activeMega && megaMenuData[activeMega] && (
         <div
-          className="hidden md:block absolute left-0 right-0 bg-white ab-b z-40"
+          style={{ position: "absolute", left: 0, right: 0, backgroundColor: "#fff", borderBottom: border, zIndex: 40 }}
+          className="hidden md:block"
           onMouseEnter={() => setActiveMega(activeMega)}
           onMouseLeave={() => setActiveMega(null)}
         >
@@ -150,13 +170,12 @@ export default function Navbar() {
                 <p style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginBottom: "16px" }}>
                   {col.title}
                 </p>
-                <ul style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <ul style={{ display: "flex", flexDirection: "column", gap: "10px", listStyle: "none", padding: 0, margin: 0 }}>
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        style={{ fontSize: "12px", color: "#888" }}
-                        className="hover:text-black transition-colors"
+                        style={{ fontSize: "12px", color: "#888", textDecoration: "none" }}
                         onClick={() => setActiveMega(null)}
                       >
                         {link.label}
@@ -172,14 +191,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white ab-b">
+        <div style={{ backgroundColor: "#fff", borderBottom: border }} className="md:hidden">
           <nav style={{ display: "flex", flexDirection: "column" }}>
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="ab-b"
-                style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
+                style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", borderBottom: border, color: "#000", textDecoration: "none" }}
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -187,8 +205,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/cart"
-              className="ab-b"
-              style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
+              style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", borderBottom: border, color: "#000", textDecoration: "none" }}
               onClick={() => setMenuOpen(false)}
             >
               BAG {totalItems > 0 && `(${totalItems})`}
