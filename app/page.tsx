@@ -29,12 +29,9 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         {/* Bottom-left small text */}
         <div className="absolute bottom-10 left-8 text-white">
-          <p className="text-[10px] tracking-[0.3em] uppercase mb-2 opacity-70">
-            Fall / Winter 2024
-          </p>
           <h1
             className="text-2xl font-light tracking-[0.05em] mb-5"
-            style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             New Collection
           </h1>
@@ -42,7 +39,7 @@ export default function HomePage() {
             href="/collections"
             className="text-[10px] tracking-[0.25em] uppercase border-b border-white/70 pb-0.5 hover:border-white transition-colors duration-300"
           >
-            Explore
+            Enter
           </Link>
         </div>
       </section>
@@ -104,7 +101,7 @@ export default function HomePage() {
                 href="/collections"
                 className="inline-block text-[10px] tracking-[0.2em] uppercase border-b border-black pb-0.5 w-fit hover:opacity-40 transition-opacity"
               >
-                Shop the Collection
+                Enter
               </Link>
             </div>
           </div>
