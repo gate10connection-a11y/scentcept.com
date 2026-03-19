@@ -7,32 +7,44 @@ export default function Footer() {
   const [email, setEmail] = useState("");
 
   return (
-    <footer className="border-t border-black/15">
+    <footer className="ab-t">
       {/* 4-column grid with cell borders */}
       <div className="grid grid-cols-2 md:grid-cols-4">
-        <div className="p-6 md:p-8 border-r border-black/15 border-b border-black/15">
+        <div className="p-6 md:p-8 ab-r ab-b">
           <h3 className="text-[10px] tracking-[0.2em] uppercase mb-5">Customer Service</h3>
           <ul className="space-y-2.5">
-            {["Contact Us", "Shipping & Delivery", "Returns & Exchanges", "Size Guide", "FAQs"].map((item) => (
-              <li key={item}>
-                <span className="text-[11px] text-gray-400 cursor-pointer hover:text-black transition-colors duration-200">{item}</span>
+            {[
+              { label: "Contact Us", href: "/contact" },
+              { label: "Shipping & Delivery", href: "/shipping" },
+              { label: "Returns & Exchanges", href: "/returns" },
+              { label: "Size Guide", href: "/size-guide" },
+              { label: "FAQs", href: "/faq" },
+            ].map((item) => (
+              <li key={item.label}>
+                <Link href={item.href} className="text-[11px] text-gray-400 hover:text-black transition-colors duration-200">{item.label}</Link>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="p-6 md:p-8 md:border-r md:border-black/15 border-b border-black/15">
+        <div className="p-6 md:p-8 ab-r ab-b">
           <h3 className="text-[10px] tracking-[0.2em] uppercase mb-5">Company</h3>
           <ul className="space-y-2.5">
-            {["About SCENTCEPT", "Careers", "Press", "Store Locator", "Sustainability"].map((item) => (
-              <li key={item}>
-                <span className="text-[11px] text-gray-400 cursor-pointer hover:text-black transition-colors duration-200">{item}</span>
+            {[
+              { label: "About SCENTCEPT", href: "/about" },
+              { label: "Careers", href: "/about" },
+              { label: "Press", href: "/about" },
+              { label: "Store Locator", href: "/contact" },
+              { label: "Sustainability", href: "/sustainability" },
+            ].map((item) => (
+              <li key={item.label}>
+                <Link href={item.href} className="text-[11px] text-gray-400 hover:text-black transition-colors duration-200">{item.label}</Link>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="p-6 md:p-8 border-r border-black/15 border-b border-black/15">
+        <div className="p-6 md:p-8 ab-r ab-b">
           <h3 className="text-[10px] tracking-[0.2em] uppercase mb-5">Follow</h3>
           <ul className="space-y-2.5">
             {["Instagram", "X (Twitter)", "Pinterest", "TikTok", "Spotify"].map((item) => (
@@ -43,7 +55,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="p-6 md:p-8 border-b border-black/15">
+        <div className="p-6 md:p-8 ab-b">
           <h3 className="text-[10px] tracking-[0.2em] uppercase mb-5">Newsletter</h3>
           <p className="text-[11px] text-gray-400 mb-5 leading-relaxed">
             Sign up to receive updates on new arrivals and other discount information.

@@ -4,16 +4,46 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 
-const megaMenuData: Record<string, { title: string; links: string[] }[]> = {
+const megaMenuData: Record<string, { title: string; links: { label: string; href: string }[] }[]> = {
   "SHOP WOMEN": [
-    { title: "Clothing", links: ["Coats & Jackets", "Dresses", "Tops", "Knitwear", "Shirts", "T-shirts", "Trousers", "Skirts", "Denim"] },
-    { title: "Accessories", links: ["Bags", "Scarves", "Hats", "Belts", "Jewellery", "Sunglasses"] },
-    { title: "Shoes", links: ["Boots", "Sneakers", "Heels", "Flats", "Sandals"] },
+    { title: "Clothing", links: [
+      { label: "Coats & Jackets", href: "/women?cat=Outerwear" },
+      { label: "Tops", href: "/women?cat=Tops" },
+      { label: "Knitwear", href: "/women?cat=Tops" },
+      { label: "Trousers", href: "/women?cat=Bottoms" },
+      { label: "Denim", href: "/women?cat=Bottoms" },
+      { label: "Skirts", href: "/women?cat=Bottoms" },
+    ]},
+    { title: "Accessories", links: [
+      { label: "Bags", href: "/women?cat=Bags" },
+      { label: "Scarves", href: "/women?cat=Accessories" },
+      { label: "Jewellery", href: "/women?cat=Accessories" },
+      { label: "Sunglasses", href: "/women?cat=Accessories" },
+    ]},
+    { title: "Shoes", links: [
+      { label: "Boots", href: "/women?cat=Footwear" },
+      { label: "Sneakers", href: "/women?cat=Footwear" },
+      { label: "Heels", href: "/women?cat=Footwear" },
+    ]},
   ],
   "SHOP MEN": [
-    { title: "Clothing", links: ["Coats & Jackets", "Knitwear", "Shirts", "T-shirts", "Trousers", "Denim", "Suits"] },
-    { title: "Accessories", links: ["Bags", "Scarves", "Hats", "Belts", "Wallets", "Sunglasses"] },
-    { title: "Shoes", links: ["Boots", "Sneakers", "Loafers", "Sandals"] },
+    { title: "Clothing", links: [
+      { label: "Coats & Jackets", href: "/men?cat=Outerwear" },
+      { label: "Tops", href: "/men?cat=Tops" },
+      { label: "Knitwear", href: "/men?cat=Tops" },
+      { label: "Trousers", href: "/men?cat=Bottoms" },
+      { label: "Denim", href: "/men?cat=Bottoms" },
+    ]},
+    { title: "Accessories", links: [
+      { label: "Bags", href: "/men?cat=Bags" },
+      { label: "Scarves", href: "/men?cat=Accessories" },
+      { label: "Wallets", href: "/men?cat=Accessories" },
+    ]},
+    { title: "Shoes", links: [
+      { label: "Boots", href: "/men?cat=Footwear" },
+      { label: "Sneakers", href: "/men?cat=Footwear" },
+      { label: "Loafers", href: "/men?cat=Footwear" },
+    ]},
   ],
 };
 
@@ -23,10 +53,10 @@ export default function Navbar() {
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
   const navItems = [
-    { label: "SHOP WOMEN", href: "/collections" },
-    { label: "SHOP MEN", href: "/collections" },
-    { label: "FACE", href: "/collections" },
-    { label: "SALE", href: "/collections" },
+    { label: "SHOP WOMEN", href: "/women" },
+    { label: "SHOP MEN", href: "/men" },
+    { label: "FACE", href: "/face" },
+    { label: "SALE", href: "/sale" },
   ];
 
   return (
@@ -35,30 +65,26 @@ export default function Navbar() {
       onMouseLeave={() => setActiveMega(null)}
     >
       {/* Main nav bar */}
-      <div className="flex items-center h-[44px] border-b border-black/15">
-        {/* Left nav — desktop: cell/grid borders like Acne Studios */}
+      <div className="flex items-center h-[44px] ab-b">
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center h-full">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="h-full flex items-center px-6 text-[10px] tracking-[0.15em] uppercase border-r border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
-              onMouseEnter={() => {
-                if (megaMenuData[item.label]) {
-                  setActiveMega(item.label);
-                } else {
-                  setActiveMega(null);
-                }
-              }}
+              className="h-full flex items-center ab-r"
+              style={{ padding: "0 24px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
+              onMouseEnter={() => setActiveMega(megaMenuData[item.label] ? item.label : null)}
             >
-              {item.label}
+              <span className="hover:opacity-50 transition-opacity">{item.label}</span>
             </Link>
           ))}
         </nav>
 
-        {/* Mobile: hamburger */}
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden h-full px-5 flex items-center border-r border-black/15"
+          className="md:hidden h-full flex items-center ab-r"
+          style={{ padding: "0 20px" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -71,54 +97,39 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Center logo — absolute centered */}
+        {/* Center logo */}
         <div className="flex-1" />
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 text-[15px] font-bold tracking-[0.02em] uppercase leading-none"
-          style={{ fontFamily: "var(--font-display)" }}
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{ fontSize: "13px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase" as const }}
         >
           Scentcept
         </Link>
         <div className="flex-1" />
 
-        {/* Right icons — cell borders */}
+        {/* Right icons */}
         <div className="flex items-center h-full">
-          <button
-            aria-label="Search"
-            className="h-full px-5 flex items-center border-l border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
-          >
+          <Link href="/collections" aria-label="Search" className="h-full flex items-center ab-l" style={{ padding: "0 20px" }}>
             <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="7" strokeWidth={1.3} />
               <path d="M16.5 16.5L21 21" strokeWidth={1.3} strokeLinecap="round" />
             </svg>
-          </button>
-
-          <button
-            aria-label="Account"
-            className="hidden md:flex h-full px-5 items-center border-l border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
-          >
+          </Link>
+          <Link href="/about" aria-label="Account" className="hidden md:flex h-full items-center ab-l" style={{ padding: "0 20px" }}>
             <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" strokeWidth={1.3} />
             </svg>
-          </button>
-
-          <Link
-            href="/cart"
-            aria-label="Bag"
-            className="h-full px-5 flex items-center relative border-l border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
-          >
+          </Link>
+          <Link href="/cart" aria-label="Bag" className="h-full flex items-center relative ab-l" style={{ padding: "0 20px" }}>
             <svg className="w-[15px] h-[15px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
               <line x1="3" y1="6" x2="21" y2="6" strokeWidth={1.3} />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-                d="M16 10a4 4 0 0 1-8 0" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M16 10a4 4 0 0 1-8 0" />
             </svg>
             {totalItems > 0 && (
-              <span className="absolute top-2.5 right-2.5 text-[9px] font-medium leading-none">
+              <span style={{ position: "absolute", top: "8px", right: "10px", fontSize: "9px", fontWeight: 500 }}>
                 {totalItems}
               </span>
             )}
@@ -126,26 +137,29 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mega Menu — Acne Studios dropdown */}
+      {/* Mega Menu Dropdown */}
       {activeMega && megaMenuData[activeMega] && (
         <div
-          className="hidden md:block absolute left-0 right-0 bg-white border-b border-black/15 z-40"
+          className="hidden md:block absolute left-0 right-0 bg-white ab-b z-40"
           onMouseEnter={() => setActiveMega(activeMega)}
           onMouseLeave={() => setActiveMega(null)}
         >
-          <div className="flex px-6 py-8 gap-16 max-w-screen-xl">
+          <div style={{ display: "flex", padding: "32px 40px", gap: "64px" }}>
             {megaMenuData[activeMega].map((col) => (
               <div key={col.title}>
-                <p className="text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{col.title}</p>
-                <ul className="space-y-2.5">
+                <p style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginBottom: "16px" }}>
+                  {col.title}
+                </p>
+                <ul style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <Link
-                        href="/collections"
-                        className="text-[11px] text-gray-500 hover:text-black transition-colors duration-150"
+                        href={link.href}
+                        style={{ fontSize: "12px", color: "#888" }}
+                        className="hover:text-black transition-colors"
                         onClick={() => setActiveMega(null)}
                       >
-                        {link}
+                        {link.label}
                       </Link>
                     </li>
                   ))}
@@ -158,13 +172,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-b border-black/15">
-          <nav className="flex flex-col">
+        <div className="md:hidden bg-white ab-b">
+          <nav style={{ display: "flex", flexDirection: "column" }}>
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="px-5 py-4 text-[10px] tracking-[0.15em] uppercase border-b border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
+                className="ab-b"
+                style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -172,7 +187,8 @@ export default function Navbar() {
             ))}
             <Link
               href="/cart"
-              className="px-5 py-4 text-[10px] tracking-[0.15em] uppercase border-b border-black/15 hover:bg-black hover:text-white transition-colors duration-150"
+              className="ab-b"
+              style={{ padding: "16px 20px", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase" as const }}
               onClick={() => setMenuOpen(false)}
             >
               BAG {totalItems > 0 && `(${totalItems})`}

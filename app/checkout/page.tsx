@@ -17,7 +17,7 @@ export default function CheckoutPage() {
   if (state.items.length === 0) {
     return (
       <div>
-        <div className="flex items-center px-6 md:px-10 h-[44px] border-b border-black/15">
+        <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
           <span className="text-[10px] tracking-[0.2em] uppercase">Checkout</span>
         </div>
         <div className="text-center py-24">
@@ -49,41 +49,41 @@ export default function CheckoutPage() {
 
   return (
     <div>
-      <div className="flex items-center px-6 md:px-10 h-[44px] border-b border-black/15">
+      <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
         <span className="text-[10px] tracking-[0.2em] uppercase">Checkout</span>
       </div>
 
       <div className="grid md:grid-cols-2">
-        <div className="md:border-r md:border-black/15">
-          <div className="p-6 md:p-10 border-b border-black/15">
+        <div className="md:ab-r" style={{ borderRight: "1px solid #e0e0e0" }}>
+          <div className="p-6 md:p-10 ab-b">
             <h2 className="text-[10px] tracking-[0.2em] uppercase mb-5">Contact</h2>
             <input
               type="email"
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors"
+              className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors"
             />
           </div>
 
-          <div className="p-6 md:p-10 border-b border-black/15">
+          <div className="p-6 md:p-10 ab-b">
             <h2 className="text-[10px] tracking-[0.2em] uppercase mb-5">Shipping Address</h2>
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <input type="text" placeholder="First name" className="px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
-                <input type="text" placeholder="Last name" className="px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
+                <input type="text" placeholder="First name" className="px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
+                <input type="text" placeholder="Last name" className="px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
               </div>
-              <input type="text" placeholder="Address" className="w-full px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
-              <input type="text" placeholder="Apartment, suite, etc. (optional)" className="w-full px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
+              <input type="text" placeholder="Address" className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
+              <input type="text" placeholder="Apartment, suite, etc. (optional)" className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
               <div className="grid grid-cols-2 gap-3">
-                <input type="text" placeholder="City" className="px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
-                <input type="text" placeholder="Postal code" className="px-4 py-3 text-[12px] border border-black/15 focus:outline-none focus:border-black transition-colors" />
+                <input type="text" placeholder="City" className="px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
+                <input type="text" placeholder="Postal code" className="px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors" />
               </div>
             </div>
           </div>
 
           <div className="p-6 md:p-10">
-            <div className="p-4 mb-6 text-[11px] text-gray-500 leading-relaxed border border-black/15">
+            <div className="p-4 mb-6 text-[11px] text-gray-500 leading-relaxed ab">
               <p className="font-medium text-black mb-1">Secure Payment via Stripe</p>
               <p>You will be redirected to Stripe&apos;s secure checkout to complete your payment.</p>
             </div>
@@ -98,7 +98,7 @@ export default function CheckoutPage() {
         </div>
 
         <div>
-          <div className="p-6 md:p-10 border-b border-black/15">
+          <div className="p-6 md:p-10 ab-b">
             <h2 className="text-[10px] tracking-[0.2em] uppercase mb-6">Order Summary</h2>
             <div className="space-y-5">
               {state.items.map((item) => (
@@ -126,7 +126,7 @@ export default function CheckoutPage() {
                 <span className="text-[11px] text-gray-500">Shipping</span>
                 <span className="text-[11px]">{shipping === 0 ? "Free" : formatPrice(shipping)}</span>
               </div>
-              <div className="flex justify-between pt-3 border-t border-black/15">
+              <div className="flex justify-between pt-3 ab-t">
                 <span className="text-[10px] tracking-[0.2em] uppercase">Total</span>
                 <span className="text-[13px]">{formatPrice(total)}</span>
               </div>

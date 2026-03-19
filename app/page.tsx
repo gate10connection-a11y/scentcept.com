@@ -12,7 +12,7 @@ export default function HomePage() {
       {/* Hero — full bleed campaign image, Acne Studios editorial */}
       <section className="relative w-full h-[100vh] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1800&q=85"
+          src="/images/hero.png"
           alt="Campaign"
           fill
           priority
@@ -26,7 +26,7 @@ export default function HomePage() {
           </p>
           <h1
             className="text-white text-xl md:text-2xl font-light tracking-[0.04em] mb-6"
-            style={{ fontFamily: "var(--font-display)" }}
+            style={{ fontFamily: "var(--font-primary)" }}
           >
             New Collection
           </h1>
@@ -41,7 +41,7 @@ export default function HomePage() {
 
       {/* New Arrivals — bordered grid */}
       <section>
-        <div className="flex items-center justify-between px-6 md:px-10 h-[44px] border-b border-black/15">
+        <div className="flex items-center justify-between px-6 md:px-10 h-[44px] ab-b">
           <span className="text-[10px] tracking-[0.2em] uppercase">New Arrivals</span>
           <Link
             href="/collections"
@@ -54,7 +54,7 @@ export default function HomePage() {
           {newProducts.map((product, i) => (
             <div
               key={product.id}
-              className={`${(i + 1) % 4 !== 0 ? "border-r border-black/15" : ""} ${i < 4 ? "border-b border-black/15" : ""}`}
+              className={`${(i + 1) % 4 !== 0 ? "ab-r" : ""} ${i < 4 ? "ab-b" : ""}`}
             >
               <ProductCard product={product} />
             </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
 
       {/* Editorial split — two campaign images side by side, Acne style */}
       <section className="grid md:grid-cols-2">
-        <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden border-r border-black/15 border-b border-black/15">
+        <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden ab-r ab-b">
           <Image
             src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&q=85"
             alt="Editorial Women"
@@ -83,7 +83,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden border-b border-black/15">
+        <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden ab-b">
           <Image
             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85"
             alt="Editorial Men"
@@ -105,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* Full-bleed editorial banner */}
-      <section className="relative w-full aspect-[21/9] overflow-hidden border-b border-black/15">
+      <section className="relative w-full aspect-[21/9] overflow-hidden ab-b">
         <Image
           src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1800&q=85"
           alt="Campaign Editorial"
@@ -120,7 +120,7 @@ export default function HomePage() {
           </p>
           <p
             className="text-white text-lg md:text-xl font-light tracking-[0.02em] mb-5"
-            style={{ fontFamily: "var(--font-display)" }}
+            style={{ fontFamily: "var(--font-primary)" }}
           >
             Crafted with intention
           </p>
@@ -135,7 +135,7 @@ export default function HomePage() {
 
       {/* Shop by Category — Acne grid cell style */}
       <section>
-        <div className="flex items-center px-6 md:px-10 h-[44px] border-b border-black/15">
+        <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
           <span className="text-[10px] tracking-[0.2em] uppercase">Shop by Category</span>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3">
@@ -151,8 +151,8 @@ export default function HomePage() {
               key={cat.name}
               href="/collections"
               className={`group relative aspect-[4/5] overflow-hidden bg-[#f5f5f5] ${
-                (i + 1) % 3 !== 0 ? "border-r border-black/15" : ""
-              } border-b border-black/15`}
+                (i + 1) % 3 !== 0 ? "ab-r" : ""
+              } ab-b`}
             >
               <Image
                 src={cat.img}
@@ -174,7 +174,7 @@ export default function HomePage() {
 
       {/* All Products */}
       <section>
-        <div className="flex items-center justify-between px-6 md:px-10 h-[44px] border-b border-black/15">
+        <div className="flex items-center justify-between px-6 md:px-10 h-[44px] ab-b">
           <span className="text-[10px] tracking-[0.2em] uppercase">All Products</span>
           <Link
             href="/collections"
@@ -187,7 +187,7 @@ export default function HomePage() {
           {allProducts.map((product, i) => (
             <div
               key={product.id}
-              className={`${(i + 1) % 4 !== 0 ? "border-r border-black/15" : ""} border-b border-black/15`}
+              className={`${(i + 1) % 4 !== 0 ? "ab-r" : ""} ab-b`}
             >
               <ProductCard product={product} />
             </div>

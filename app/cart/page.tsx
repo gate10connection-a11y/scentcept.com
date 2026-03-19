@@ -13,7 +13,7 @@ export default function CartPage() {
   if (state.items.length === 0) {
     return (
       <div>
-        <div className="flex items-center px-6 md:px-10 h-[44px] border-b border-black/15">
+        <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
           <span className="text-[10px] tracking-[0.2em] uppercase">Shopping Cart</span>
         </div>
         <div className="text-center py-24">
@@ -31,16 +31,16 @@ export default function CartPage() {
 
   return (
     <div>
-      <div className="flex items-center px-6 md:px-10 h-[44px] border-b border-black/15">
+      <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
         <span className="text-[10px] tracking-[0.2em] uppercase">Shopping Cart</span>
       </div>
 
       <div className="grid md:grid-cols-3">
-        <div className="md:col-span-2 md:border-r md:border-black/15">
+        <div className="md:col-span-2" style={{ borderRight: "1px solid #e0e0e0" }}>
           {state.items.map((item) => (
             <div
               key={`${item.product.id}-${item.size}`}
-              className="grid grid-cols-[80px_1fr_auto] md:grid-cols-[100px_1fr_auto] gap-4 md:gap-5 p-5 md:px-10 md:py-8 border-b border-black/15"
+              className="grid grid-cols-[80px_1fr_auto] md:grid-cols-[100px_1fr_auto] gap-4 md:gap-5 p-5 md:px-10 md:py-8 ab-b"
             >
               <Link href={`/product/${item.product.id}`}>
                 <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5]">
@@ -56,12 +56,12 @@ export default function CartPage() {
                 <div className="flex items-center w-fit mt-2">
                   <button
                     onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
-                    className="w-8 h-8 flex items-center justify-center text-[12px] border border-black/15 hover:bg-black hover:text-white transition-colors"
+                    className="w-8 h-8 flex items-center justify-center text-[12px] ab hover:bg-black hover:text-white transition-colors"
                   >−</button>
-                  <span className="w-10 h-8 flex items-center justify-center text-[11px] border-y border-black/15">{item.quantity}</span>
+                  <span className="w-10 h-8 flex items-center justify-center text-[11px] ab-t ab-b">{item.quantity}</span>
                   <button
                     onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
-                    className="w-8 h-8 flex items-center justify-center text-[12px] border border-black/15 hover:bg-black hover:text-white transition-colors"
+                    className="w-8 h-8 flex items-center justify-center text-[12px] ab hover:bg-black hover:text-white transition-colors"
                   >+</button>
                 </div>
                 <button
@@ -88,7 +88,7 @@ export default function CartPage() {
                 <span className="text-[11px] text-gray-500">Shipping</span>
                 <span className="text-[11px]">{totalPrice >= 200000 ? "Free" : formatPrice(15000)}</span>
               </div>
-              <div className="pt-3 flex justify-between border-t border-black/15">
+              <div className="pt-3 flex justify-between ab-t">
                 <span className="text-[10px] tracking-[0.2em] uppercase">Total</span>
                 <span className="text-[13px]">{formatPrice(totalPrice + (totalPrice >= 200000 ? 0 : 15000))}</span>
               </div>

@@ -17,7 +17,7 @@ export default function CollectionsPage() {
   return (
     <div>
       {/* Header bar */}
-      <div className="flex items-center justify-between px-6 md:px-10 h-[44px] border-b border-black/15">
+      <div className="flex items-center justify-between px-6 md:px-10 h-[44px] ab-b">
         <span className="text-[10px] tracking-[0.2em] uppercase">All Collections</span>
         <span className="text-[10px] tracking-[0.15em] text-gray-400">
           {filtered.length} {filtered.length === 1 ? "item" : "items"}
@@ -25,12 +25,12 @@ export default function CollectionsPage() {
       </div>
 
       {/* Filter Bar — Acne cell/tab style */}
-      <div className="flex overflow-x-auto scrollbar-none border-b border-black/15">
+      <div className="flex overflow-x-auto scrollbar-none ab-b">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`whitespace-nowrap h-[40px] px-6 text-[10px] tracking-[0.15em] uppercase transition-colors duration-150 flex-shrink-0 border-r border-black/15 ${
+            className={`whitespace-nowrap h-[40px] px-6 text-[10px] tracking-[0.15em] uppercase transition-colors duration-150 flex-shrink-0 ab-r ${
               selectedCategory === cat
                 ? "bg-black text-white"
                 : "text-gray-500 hover:bg-black hover:text-white"
@@ -46,7 +46,7 @@ export default function CollectionsPage() {
         {filtered.map((product, i) => (
           <div
             key={product.id}
-            className={`${(i + 1) % 4 !== 0 ? "border-r border-black/15" : ""} border-b border-black/15`}
+            className={`${(i + 1) % 4 !== 0 ? "ab-r" : ""} ab-b`}
           >
             <ProductCard product={product} />
           </div>

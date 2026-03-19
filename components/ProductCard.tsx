@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Info — Acne Studios: very small text, tight spacing */}
       <div className="px-4 py-3 md:px-5 md:py-4">
-        <p className="text-[11px] tracking-[0.01em] leading-snug" style={{ fontFamily: "var(--font-display)" }}>
+        <p className="text-[11px] tracking-[0.01em] leading-snug">
           {product.name}
         </p>
         <p className="text-[11px] text-gray-500 mt-0.5">

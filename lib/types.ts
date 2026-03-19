@@ -7,7 +7,9 @@ export interface Product {
   images: string[];
   sizes: string[];
   isNew?: boolean;
+  isSale?: boolean;
   collection: string;
+  gender: "women" | "men" | "unisex";
 }
 
 export interface CartItem {
