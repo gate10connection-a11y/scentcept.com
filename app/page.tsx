@@ -8,13 +8,6 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Announcement bar — ultra thin */}
-      <div className="bg-white border-b border-black/5 text-center py-2">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400">
-          Free shipping on orders over ₩200,000
-        </p>
-      </div>
-
       {/* Hero — full screen, minimal text overlay bottom-left */}
       <section className="relative w-full h-[calc(100vh-theme(spacing.12))] overflow-hidden">
         <Image
