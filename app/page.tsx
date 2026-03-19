@@ -12,12 +12,13 @@ export default function HomePage() {
       {/* Hero — full bleed campaign image, Acne Studios editorial */}
       <section className="relative w-full h-[100vh] overflow-hidden">
         <Image
-          src="/images/hero.png"
+          src="/images/hero-wide.png"
           alt="Campaign"
           fill
           priority
-          className="object-cover object-top"
+          className="object-cover"
           sizes="100vw"
+          style={{ objectPosition: "center center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="absolute bottom-8 left-6 md:bottom-14 md:left-10">
