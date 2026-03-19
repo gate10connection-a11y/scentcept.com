@@ -16,49 +16,37 @@ export default function CollectionsPage() {
 
   return (
     <div>
-      {/* Header bar — Acne cell style */}
-      <div
-        className="flex items-center justify-between px-6 md:px-10 h-11"
-        style={{ borderBottom: "var(--border)" }}
-      >
-        <span className="text-[10px] tracking-[0.2em] uppercase">
-          All Collections
-        </span>
+      {/* Header bar */}
+      <div className="flex items-center justify-between px-6 md:px-10 h-[44px] border-b border-black/15">
+        <span className="text-[10px] tracking-[0.2em] uppercase">All Collections</span>
         <span className="text-[10px] tracking-[0.15em] text-gray-400">
           {filtered.length} {filtered.length === 1 ? "item" : "items"}
         </span>
       </div>
 
-      {/* Filter Bar — Acne cell/tab style with borders */}
-      <div
-        className="flex overflow-x-auto scrollbar-none"
-        style={{ borderBottom: "var(--border)" }}
-      >
+      {/* Filter Bar — Acne cell/tab style */}
+      <div className="flex overflow-x-auto scrollbar-none border-b border-black/15">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`whitespace-nowrap h-10 px-5 text-[10px] tracking-[0.15em] uppercase transition-colors duration-150 flex-shrink-0 ${
+            className={`whitespace-nowrap h-[40px] px-6 text-[10px] tracking-[0.15em] uppercase transition-colors duration-150 flex-shrink-0 border-r border-black/15 ${
               selectedCategory === cat
                 ? "bg-black text-white"
                 : "text-gray-500 hover:bg-black hover:text-white"
             }`}
-            style={{ borderRight: "var(--border)" }}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Product Grid — Acne style with cell borders */}
+      {/* Product Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filtered.map((product, i) => (
           <div
             key={product.id}
-            style={{
-              borderRight: (i + 1) % 4 !== 0 ? "var(--border)" : "none",
-              borderBottom: "var(--border)",
-            }}
+            className={`${(i + 1) % 4 !== 0 ? "border-r border-black/15" : ""} border-b border-black/15`}
           >
             <ProductCard product={product} />
           </div>

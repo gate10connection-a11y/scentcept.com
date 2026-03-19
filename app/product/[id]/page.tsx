@@ -23,10 +23,7 @@ export default function ProductPage() {
     return (
       <div className="px-6 md:px-10 py-20 text-center">
         <p className="text-[11px] text-gray-400 mb-6">Product not found.</p>
-        <Link
-          href="/collections"
-          className="text-[10px] tracking-[0.2em] uppercase border-b border-black pb-0.5"
-        >
+        <Link href="/collections" className="text-[10px] tracking-[0.2em] uppercase border-b border-black pb-0.5">
           Back to Collections
         </Link>
       </div>
@@ -34,10 +31,7 @@ export default function ProductPage() {
   }
 
   const handleAddToCart = () => {
-    if (!selectedSize) {
-      setSizeError(true);
-      return;
-    }
+    if (!selectedSize) { setSizeError(true); return; }
     setSizeError(false);
     addItem(product, selectedSize);
     setAdded(true);
@@ -46,11 +40,8 @@ export default function ProductPage() {
 
   return (
     <div>
-      {/* Breadcrumb bar — Acne cell style */}
-      <nav
-        className="flex items-center gap-2 px-6 md:px-10 h-10 text-[10px] text-gray-400"
-        style={{ borderBottom: "var(--border)" }}
-      >
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 px-6 md:px-10 h-[40px] text-[10px] text-gray-400 border-b border-black/15">
         <Link href="/" className="hover:text-black transition-colors">Home</Link>
         <span>/</span>
         <Link href="/collections" className="hover:text-black transition-colors">Collections</Link>
@@ -59,9 +50,8 @@ export default function ProductPage() {
       </nav>
 
       <div className="grid md:grid-cols-2">
-        {/* Left — Images stacked vertically, Acne style */}
-        <div style={{ borderRight: "var(--border)" }}>
-          {/* Main image */}
+        {/* Left — Images */}
+        <div className="border-r border-black/15">
           <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5]">
             <Image
               src={product.images[selectedImage]}
@@ -72,97 +62,63 @@ export default function ProductPage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-
-          {/* Thumbnail row */}
           {product.images.length > 1 && (
-            <div className="flex" style={{ borderTop: "var(--border)" }}>
+            <div className="flex border-t border-black/15">
               {product.images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
                   className={`relative flex-1 aspect-square overflow-hidden bg-[#f5f5f5] transition-opacity ${
                     selectedImage === i ? "opacity-100" : "opacity-50 hover:opacity-75"
-                  }`}
-                  style={{ borderRight: i < product.images.length - 1 ? "var(--border)" : "none" }}
+                  } ${i < product.images.length - 1 ? "border-r border-black/15" : ""}`}
                 >
-                  <Image
-                    src={img}
-                    alt={`${product.name} ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="100px"
-                  />
+                  <Image src={img} alt={`${product.name} ${i + 1}`} fill className="object-cover" sizes="100px" />
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Right — Product Info, Acne style: clean, structured */}
+        {/* Right — Product Info */}
         <div className="flex flex-col">
-          {/* Product header */}
-          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-2">
-              {product.category}
-            </p>
-            <h1
-              className="text-lg md:text-xl font-medium tracking-[-0.01em] mb-2"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+          <div className="p-6 md:p-10 border-b border-black/15">
+            <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-2">{product.category}</p>
+            <h1 className="text-lg md:text-xl font-medium tracking-[-0.01em] mb-2" style={{ fontFamily: "var(--font-display)" }}>
               {product.name}
             </h1>
             <p className="text-[13px]">{formatPrice(product.price)}</p>
           </div>
 
-          {/* Size Selection */}
-          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+          <div className="p-6 md:p-10 border-b border-black/15">
             <div className="flex items-center justify-between mb-4">
               <p className="text-[10px] tracking-[0.2em] uppercase">Size</p>
-              <button className="text-[10px] text-gray-400 underline hover:text-black transition-colors">
-                Size Guide
-              </button>
+              <button className="text-[10px] text-gray-400 underline hover:text-black transition-colors">Size Guide</button>
             </div>
-            <div className="flex flex-wrap gap-0">
-              {product.sizes.map((size, i) => (
+            <div className="flex flex-wrap">
+              {product.sizes.map((size) => (
                 <button
                   key={size}
-                  onClick={() => {
-                    setSelectedSize(size);
-                    setSizeError(false);
-                  }}
-                  className={`h-10 px-5 text-[10px] tracking-[0.1em] uppercase transition-colors duration-150 ${
-                    selectedSize === size
-                      ? "bg-black text-white"
-                      : "hover:bg-black hover:text-white"
+                  onClick={() => { setSelectedSize(size); setSizeError(false); }}
+                  className={`h-10 px-5 text-[10px] tracking-[0.1em] uppercase transition-colors duration-150 border border-black/15 -mr-px -mb-px ${
+                    selectedSize === size ? "bg-black text-white" : "hover:bg-black hover:text-white"
                   }`}
-                  style={{
-                    border: "var(--border)",
-                    marginRight: "-1px",
-                    marginBottom: "-1px",
-                  }}
                 >
                   {size}
                 </button>
               ))}
             </div>
-            {sizeError && (
-              <p className="text-[10px] text-red-500 mt-3">Please select a size.</p>
-            )}
+            {sizeError && <p className="text-[10px] text-red-500 mt-3">Please select a size.</p>}
           </div>
 
-          {/* Add to Cart */}
-          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+          <div className="p-6 md:p-10 border-b border-black/15">
             <button
               onClick={handleAddToCart}
               className={`w-full h-12 text-[10px] tracking-[0.2em] uppercase transition-all duration-200 ${
-                added
-                  ? "bg-gray-800 text-white"
-                  : "bg-black text-white hover:bg-gray-900"
+                added ? "bg-gray-800 text-white" : "bg-black text-white hover:bg-gray-900"
               }`}
             >
               {added ? "Added to Cart ✓" : "Add to Cart"}
             </button>
-
             {added && (
               <button
                 onClick={() => router.push("/cart")}
@@ -173,15 +129,11 @@ export default function ProductPage() {
             )}
           </div>
 
-          {/* Description */}
-          <div className="p-6 md:p-10" style={{ borderBottom: "var(--border)" }}>
+          <div className="p-6 md:p-10 border-b border-black/15">
             <p className="text-[10px] tracking-[0.2em] uppercase mb-4">Description</p>
-            <p className="text-[12px] text-gray-600 leading-relaxed">
-              {product.description}
-            </p>
+            <p className="text-[12px] text-gray-600 leading-relaxed">{product.description}</p>
           </div>
 
-          {/* Details */}
           <div className="p-6 md:p-10">
             <p className="text-[10px] tracking-[0.2em] uppercase mb-4">Details</p>
             <div className="space-y-1.5">

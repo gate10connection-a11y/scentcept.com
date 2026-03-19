@@ -38,7 +38,7 @@ export default function RootLayout({
       <body>
         <CartProvider>
           <Navbar />
-          <main className="pt-11 min-h-screen">{children}</main>
+          <main className="pt-[44px] min-h-screen">{children}</main>
           <Footer />
         </CartProvider>
       </body>

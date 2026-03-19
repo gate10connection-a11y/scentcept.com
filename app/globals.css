@@ -3,7 +3,6 @@
 :root {
   --font-display: 'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-body: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 * {
@@ -42,7 +41,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings - Acne Studios style: bold grotesque */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -70,38 +68,16 @@ input, textarea, select {
   -webkit-appearance: none;
 }
 
-/* Acne Studios label style */
-.label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-/* Selection */
 ::selection {
   background-color: #000;
   color: #fff;
 }
 
-/* Scrollbar hide for filter bars */
+/* Scrollbar hide */
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
-}
-
-/* Acne Studios - cell border utility */
-.cell-border {
-  border-right: var(--border);
-}
-.cell-border-l {
-  border-left: var(--border);
-}
-.cell-border-b {
-  border-bottom: var(--border);
-}
-.cell-border-t {
-  border-top: var(--border);
 }
