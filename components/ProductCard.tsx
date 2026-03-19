@@ -44,15 +44,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             sizes="(max-width: 768px) 50vw, 25vw"
           />
         )}
-        {/* NEW badge */}
-        {product.isNew && (
-          <span className="absolute top-2.5 left-2.5 text-[9px] tracking-[0.15em] uppercase bg-white px-1.5 py-0.5 leading-none">
-            New
-          </span>
-        )}
       </div>
       <div className="mt-3">
-        <p className="text-xs font-light leading-snug">{product.name}</p>
+        <p className="text-xs font-['Space_Grotesk'] font-medium tracking-tight leading-snug">{product.name}</p>
         <p className="text-xs text-gray-500 mt-0.5">{formatPrice(product.price)}</p>
       </div>
     </Link>

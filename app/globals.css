@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
 
 * {
   box-sizing: border-box;
@@ -30,7 +36,7 @@ body {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
@@ -42,8 +48,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
-  letter-spacing: 0.02em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -52,13 +59,13 @@ a {
 }
 
 button {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   letter-spacing: 0.15em;
 }
 
 input, textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 13px;
 }
 

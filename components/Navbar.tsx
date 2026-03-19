@@ -12,12 +12,12 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
       <div className="max-w-screen-2xl mx-auto px-6 h-12 flex items-center">
         {/* Left nav — desktop */}
-        <nav className="hidden md:flex items-center gap-8 flex-1">
+        <nav className="hidden md:flex items-center flex-1">
           {["WOMEN", "MEN", "FACE", "SALE"].map((item) => (
             <Link
               key={item}
               href="/collections"
-              className="text-[10px] tracking-[0.2em] hover:opacity-40 transition-opacity duration-200"
+              className="px-4 h-12 flex items-center border-r border-black/10 text-[10px] tracking-[0.2em] hover:bg-black hover:text-white transition-colors duration-200"
             >
               {item}
             </Link>
@@ -42,10 +42,10 @@ export default function Navbar() {
         {/* Center logo */}
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 font-serif font-light text-base tracking-[0.25em] whitespace-nowrap"
-          style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
+          className="absolute left-1/2 -translate-x-1/2 text-xl font-bold tracking-[-0.02em] leading-none"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          SCENTCEPT
+          Scentcept
         </Link>
 
         {/* Right icons */}
