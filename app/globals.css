@@ -56,24 +56,8 @@
   .ab-t { border-top: 1px solid #e0e0e0 !important; }
 }
 
-/* Logo overlay — Acne Studios style: fixed center, content scrolls behind */
-.logo-overlay-wrapper {
-  position: relative;
-}
-
-.logo-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  pointer-events: none;
-  text-align: center;
-  width: 100%;
-  line-height: 0.85;
-}
-
-.logo-overlay span {
+/* Logo overlay — Acne Studios style */
+.logo-overlay-text {
   font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -82,13 +66,5 @@
   color: #000;
   white-space: nowrap;
   user-select: none;
-}
-
-.logo-scroll-marker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 200vh;
-  pointer-events: none;
+  line-height: 0.85;
 }
