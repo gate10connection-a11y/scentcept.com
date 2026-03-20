@@ -112,7 +112,7 @@ export default function Navbar() {
         {/* Center logo — hidden on homepage where overlay logo is shown */}
         <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
           {!isHome && (
-            <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", color: "#000", textDecoration: "none" }}>
+            <Link href="/" className="text-[9px] md:text-[11px] tracking-[0.06em] md:tracking-[0.12em]" style={{ fontWeight: 600, color: "#000", textDecoration: "none" }}>
               SCENTCEPT
             </Link>
           )}
