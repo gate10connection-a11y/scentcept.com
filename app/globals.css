@@ -63,7 +63,7 @@
   font-style: normal;
   font-size: clamp(80px, 16vw, 260px);
   letter-spacing: -0.02em;
-  color: #000;
+  color: #fff;
   white-space: nowrap;
   user-select: none;
   line-height: 0.85;

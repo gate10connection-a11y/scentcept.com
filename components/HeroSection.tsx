@@ -24,8 +24,9 @@ export default function HeroSection() {
         ${isScrolled ? "scale-75" : "scale-100"}
         ${isVisible ? "opacity-100" : "opacity-0"}
       `}
+      style={{ mixBlendMode: "difference" }}
     >
-      <span className="logo-overlay-text">Scentcept</span>
+      <span className="logo-overlay-text" style={{ color: "#fff" }}>Scentcept</span>
     </div>
   );
 }
