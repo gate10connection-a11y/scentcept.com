@@ -1,6 +1,6 @@
-# Acne Studios — Fashion E-Commerce
+# SCENTCEPT — Fashion E-Commerce
 
-아크네 스튜디오 스타일의 미니멀 럭셔리 패션 이커머스 웹사이트입니다.
+미니멀 럭셔리 패션 이커머스 웹사이트입니다.
 
 ## 기술 스택
 
@@ -71,7 +71,7 @@ Stripe 키 없이도 실행됩니다. 결제 버튼 클릭 시 `/order-confirmat
 ## 프로젝트 구조
 
 ```
-acne-studio/
+scentcept/
 ├── app/
 │   ├── page.tsx              # 홈
 │   ├── layout.tsx            # 루트 레이아웃
