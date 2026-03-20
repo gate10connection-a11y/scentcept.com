@@ -7,7 +7,7 @@ import HeroSection from "@/components/HeroSection";
 const tileTextStyle = {
   fontSize: "11px",
   letterSpacing: "0.01em",
-  fontFamily: "'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
   color: "#000",
 };
 

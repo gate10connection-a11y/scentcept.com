@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image — no rounded corners, clean square, Acne style */}
+      {/* Product image */}
       <div className="relative overflow-hidden bg-[#f5f5f5] aspect-[3/4]">
         <Image
           src={product.images[0]}
@@ -45,7 +45,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
 
-      {/* Info — Acne Studios: very small text, tight spacing */}
+      {/* Product info */}
       <div className="px-4 py-3 md:px-5 md:py-4">
         <p className="text-[11px] tracking-[0.01em] leading-snug">
           {product.name}

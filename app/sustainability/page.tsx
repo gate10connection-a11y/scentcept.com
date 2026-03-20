@@ -8,7 +8,7 @@ export default function SustainabilityPage() {
       </div>
 
       <section className="relative w-full aspect-[21/9] overflow-hidden ab-b">
-        <Image src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1600&q=85" alt="Sustainability" fill className="object-cover" sizes="100vw" />
+        <Image src="/images/pages/sustainability-hero.jpg" alt="Sustainability" fill className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-black/20" />
       </section>
 

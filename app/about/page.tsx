@@ -8,7 +8,7 @@ export default function AboutPage() {
       </div>
 
       <section className="relative w-full aspect-[21/9] overflow-hidden ab-b">
-        <Image src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=85" alt="About" fill className="object-cover" sizes="100vw" />
+        <Image src="/images/pages/about-hero.jpg" alt="About" fill className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-black/20" />
       </section>
 

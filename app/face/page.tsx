@@ -10,7 +10,7 @@ export default function FacePage() {
 
       <section className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden ab-b">
         <Image
-          src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1600&q=85"
+          src="/images/pages/face-hero.jpg"
           alt="Face Collection"
           fill
           priority

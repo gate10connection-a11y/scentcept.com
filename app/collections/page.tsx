@@ -24,7 +24,7 @@ export default function CollectionsPage() {
         </span>
       </div>
 
-      {/* Filter Bar — Acne cell/tab style */}
+      {/* Filter Bar */}
       <div className="flex overflow-x-auto scrollbar-none ab-b">
         {categories.map((cat) => (
           <button

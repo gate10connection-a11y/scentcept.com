@@ -56,9 +56,9 @@
   .ab-t { border-top: 1px solid #e0e0e0 !important; }
 }
 
-/* Logo overlay — Acne Studios style */
+/* Logo overlay */
 .logo-overlay-text {
-  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-primary), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: clamp(80px, 16vw, 260px);

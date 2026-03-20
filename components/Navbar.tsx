@@ -113,7 +113,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right nav — Acne Studios style text links */}
+        {/* Right nav */}
         <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
           <Link href="/collections" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
             Search
