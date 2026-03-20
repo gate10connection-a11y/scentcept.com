@@ -67,7 +67,7 @@ export default function HomePage() {
       <section className="grid md:grid-cols-2">
         <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden ab-r ab-b">
           <Image
-            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&q=85"
+            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=85"
             alt="Editorial Women"
             fill
             className="object-cover"
@@ -86,7 +86,7 @@ export default function HomePage() {
         </div>
         <div className="relative aspect-[3/4] md:aspect-auto md:h-[80vh] overflow-hidden ab-b">
           <Image
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85"
+            src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=900&q=85"
             alt="Editorial Men"
             fill
             className="object-cover object-top"
@@ -108,7 +108,7 @@ export default function HomePage() {
       {/* Full-bleed editorial banner */}
       <section className="relative w-full aspect-[21/9] overflow-hidden ab-b">
         <Image
-          src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1800&q=85"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&q=85"
           alt="Campaign Editorial"
           fill
           className="object-cover"
@@ -141,12 +141,12 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3">
           {[
-            { name: "Outerwear", img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&q=80" },
-            { name: "Tops", img: "https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600&q=80" },
-            { name: "Bottoms", img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&q=80" },
-            { name: "Bags", img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80" },
-            { name: "Footwear", img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" },
-            { name: "Accessories", img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80" },
+            { name: "Outerwear", img: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=600&q=80" },
+            { name: "Tops", img: "https://images.unsplash.com/photo-1598033129183-c4f50c736c10?w=600&q=80" },
+            { name: "Bottoms", img: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80" },
+            { name: "Bags", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" },
+            { name: "Footwear", img: "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=600&q=80" },
+            { name: "Accessories", img: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=600&q=80" },
           ].map((cat, i) => (
             <Link
               key={cat.name}

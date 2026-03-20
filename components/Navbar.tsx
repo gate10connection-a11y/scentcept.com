@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 
@@ -115,15 +116,9 @@ export default function Navbar() {
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
-            fontSize: "13px",
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#000",
-            textDecoration: "none",
           }}
         >
-          Scentcept
+          <Image src="/images/logo.png" alt="SCENTCEPT" width={140} height={26} style={{ display: "block" }} priority />
         </Link>
         <div style={{ flex: 1 }} />
 
