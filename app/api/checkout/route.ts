@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
     const lineItems = items.map((item: CartItem) => ({
       price_data: {
-        currency: "krw",
+        currency: "usd",
         product_data: {
           name: item.product.name,
           description: `Size: ${item.size}`,

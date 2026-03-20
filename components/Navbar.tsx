@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 
@@ -50,6 +51,7 @@ const megaMenuData: Record<string, { title: string; links: { label: string; href
 
 export default function Navbar() {
   const { totalItems } = useCart();
+  const { data: session } = useSession();
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
@@ -126,8 +128,8 @@ export default function Navbar() {
           <Link href="/collections" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
             Both
           </Link>
-          <Link href="/about" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
-            Account
+          <Link href={session ? "/account" : "/login"} style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
+            {session ? session.user?.name?.split(" ")[0] || "Account" : "Login"}
           </Link>
           <Link href="/cart" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }}>
             <svg style={{ width: "14px", height: "14px", marginRight: "6px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">

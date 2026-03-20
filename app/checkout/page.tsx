@@ -1,15 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/products";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function CheckoutPage() {
+  const { data: session } = useSession();
   const { state, totalPrice } = useCart();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      setEmail(session.user.email);
+    }
+  }, [session]);
 
   const shipping = totalPrice >= 200000 ? 0 : 15000;
   const total = totalPrice + shipping;
