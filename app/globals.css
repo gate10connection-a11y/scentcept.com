@@ -56,25 +56,25 @@
   .ab-t { border-top: 1px solid #e0e0e0 !important; }
 }
 
-/* Logo index — Acne Studios style marquee (right to left, smooth) */
-.logo-index {
+/* Logo overlay — Acne Studios style sticky text over content */
+.logo-overlay-wrapper {
   position: relative;
-  z-index: 5;
+}
+
+.logo-overlay {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   width: 100%;
-  overflow: hidden;
+  text-align: center;
   pointer-events: none;
-  padding: 0;
   line-height: 0.85;
+  margin-top: -0.42em;
+  margin-bottom: -0.42em;
 }
 
-.logo-marquee {
-  display: flex;
-  white-space: nowrap;
-  will-change: transform;
-  animation: logoScroll 30s linear infinite;
-}
-
-.logo-index span {
+.logo-overlay span {
   font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -83,19 +83,4 @@
   color: #000;
   white-space: nowrap;
   user-select: none;
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-.logo-index span::after {
-  content: '\00a0\00a0\00a0\00a0';
-}
-
-@keyframes logoScroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
 }

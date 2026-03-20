@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
-import HeroSection from "@/components/HeroSection";
 
 const tileTextStyle = {
   fontSize: "11px",
@@ -21,51 +20,78 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Section 1: Logo marquee */}
-      <HeroSection />
+      {/* Acne Studios style: sticky logo overlays content as you scroll */}
+      <div className="logo-overlay-wrapper">
 
-      {/* Section 2: Women / Men split tiles */}
-      <section className="grid grid-cols-2">
-        {/* Women tile — light gray */}
-        <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
-          <Image
-            src="/images/tile-women.jpg"
-            alt="여성 신상품"
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            sizes="50vw"
-          />
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
-            <p style={tileTextStyle}>여성</p>
-          </div>
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <p style={tileTextStyle}>
-              <span className="hidden md:inline">여성 </span>&gt; 신상품
-            </p>
-          </div>
-        </Link>
+        {/* Sticky logo — stays in center while content scrolls behind */}
+        <div className="logo-overlay" aria-hidden="true">
+          <span>Scentcept</span>
+        </div>
 
-        {/* Men tile — dark */}
-        <Link href="/men" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
-          <Image
-            src="/images/tile-men.jpg"
-            alt="남성 신상품"
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            sizes="50vw"
-          />
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
-            <p style={tileTextStyleLight}>남성</p>
-          </div>
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <p style={tileTextStyleLight}>
-              <span className="hidden md:inline">남성 </span>&gt; 신상품
-            </p>
-          </div>
-        </Link>
-      </section>
+        {/* Section 1: Women / Men split tiles (content scrolls behind logo) */}
+        <section className="grid grid-cols-2 relative">
+          <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
+            <Image
+              src="/images/tile-women.jpg"
+              alt="여성 신상품"
+              fill
+              priority
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              sizes="50vw"
+            />
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
+              <p style={tileTextStyle}>여성</p>
+            </div>
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+              <p style={tileTextStyle}>
+                <span className="hidden md:inline">여성 </span>&gt; 신상품
+              </p>
+            </div>
+          </Link>
 
-      {/* Section 3: Full-width editorial — dark */}
+          <Link href="/men" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
+            <Image
+              src="/images/tile-men.jpg"
+              alt="남성 신상품"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              sizes="50vw"
+            />
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
+              <p style={tileTextStyleLight}>남성</p>
+            </div>
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+              <p style={tileTextStyleLight}>
+                <span className="hidden md:inline">남성 </span>&gt; 신상품
+              </p>
+            </div>
+          </Link>
+        </section>
+
+        {/* Section 2: Campaign image (logo still overlays this) */}
+        <section>
+          <Link href="/collections" className="group relative block overflow-hidden" style={{ aspectRatio: "16/9" }}>
+            <Image
+              src="/images/hero-campaign.jpg"
+              alt="캠페인"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              sizes="100vw"
+            />
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
+              <p style={tileTextStyleLight}>캠페인 더 보기</p>
+            </div>
+            <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+              <p style={tileTextStyleLight}>
+                <span className="hidden md:inline">캠페인 더 보기 </span>&gt; 2026 봄/여름 캠페인
+              </p>
+            </div>
+          </Link>
+        </section>
+
+      </div>
+
+      {/* Section 3: Full-width editorial */}
       <section>
         <Link href="/collections" className="group relative block overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <Image
@@ -86,7 +112,7 @@ export default function HomePage() {
         </Link>
       </section>
 
-      {/* Section 4: Key Categories — 4-column grid */}
+      {/* Section 4: Key Categories */}
       <section className="grid grid-cols-2 md:grid-cols-4">
         {[
           { name: "여성 진", nameHover: "더 보기", img: "/images/cat-jeans-w.jpg", href: "/women?cat=Bottoms", dark: false },
