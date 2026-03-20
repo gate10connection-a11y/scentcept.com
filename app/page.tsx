@@ -47,7 +47,7 @@ export default function HomePage() {
 
         <Link href="/men" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <Image
-            src="/images/home/men.jpg"
+            src="/images/home/man.jpg"
             alt="남성 신상품"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
