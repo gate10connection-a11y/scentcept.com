@@ -106,8 +106,12 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Spacer — no center logo */}
-        <div style={{ flex: 1 }} />
+        {/* Center logo — links to home */}
+        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+          <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", color: "#000", textDecoration: "none" }}>
+            SCENTCEPT
+          </Link>
+        </div>
 
         {/* Right nav — Acne Studios style text links */}
         <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
