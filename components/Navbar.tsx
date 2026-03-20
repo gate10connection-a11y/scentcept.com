@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 
@@ -49,6 +50,8 @@ const megaMenuData: Record<string, { title: string; links: { label: string; href
 
 export default function Navbar() {
   const { totalItems } = useCart();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
@@ -106,11 +109,13 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Center logo — links to home */}
+        {/* Center logo — hidden on homepage where overlay logo is shown */}
         <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-          <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", color: "#000", textDecoration: "none" }}>
-            SCENTCEPT
-          </Link>
+          {!isHome && (
+            <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", color: "#000", textDecoration: "none" }}>
+              SCENTCEPT
+            </Link>
+          )}
         </div>
 
         {/* Right nav */}
