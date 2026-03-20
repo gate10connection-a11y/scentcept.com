@@ -21,16 +21,27 @@ export default function HomePage() {
           style={{ objectPosition: "center center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+        {/* Center animated logo — Acne Studios style */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="hero-logo" style={{
+            fontSize: "clamp(48px, 12vw, 160px)",
+            fontWeight: 400,
+            fontStyle: "italic",
+            letterSpacing: "-0.02em",
+            color: "rgba(0,0,0,0.85)",
+            mixBlendMode: "multiply",
+            userSelect: "none",
+            whiteSpace: "nowrap",
+          }}>
+            Scentcept
+          </h1>
+        </div>
+
         <div className="absolute bottom-8 left-6 md:bottom-14 md:left-10">
           <p className="text-[10px] tracking-[0.25em] uppercase text-white/60 mb-3">
-            Spring / Summer 2026
+            캠페인 더 보기 &gt; 2026 봄/여름 캠페인
           </p>
-          <h1
-            className="text-white text-xl md:text-2xl font-light tracking-[0.04em] mb-6"
-            style={{ fontFamily: "var(--font-primary)" }}
-          >
-            New Collection
-          </h1>
           <Link
             href="/collections"
             className="inline-block text-[10px] tracking-[0.2em] uppercase text-white border-b border-white/50 pb-0.5 hover:border-white transition-colors duration-300"
