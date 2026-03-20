@@ -25,16 +25,18 @@ export default function HomePage() {
         {/* Center animated logo — Acne Studios style */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="hero-logo" style={{
-            fontSize: "clamp(48px, 12vw, 160px)",
-            fontWeight: 400,
-            fontStyle: "italic",
-            letterSpacing: "-0.02em",
-            color: "rgba(0,0,0,0.85)",
-            mixBlendMode: "multiply",
+            fontSize: "clamp(36px, 10vw, 140px)",
+            fontWeight: 300,
+            fontStyle: "normal",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase" as const,
+            color: "#fff",
+            textShadow: "0 2px 40px rgba(0,0,0,0.15)",
             userSelect: "none",
             whiteSpace: "nowrap",
+            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           }}>
-            Scentcept
+            SCENTCEPT
           </h1>
         </div>
 
