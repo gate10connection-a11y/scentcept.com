@@ -25,7 +25,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Section 1: Women / Men split tiles — logo overlays this */}
-      <section className="grid grid-cols-2 relative">
+      <section className="grid grid-cols-1 md:grid-cols-2 relative">
         <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <Image
             src="/images/tile-women.jpg"
