@@ -7,7 +7,7 @@ import { useState } from "react";
 const border = "1px solid #e0e0e0";
 
 const megaMenuData: Record<string, { title: string; links: { label: string; href: string }[] }[]> = {
-  "SHOP WOMEN": [
+  "WOMEN": [
     { title: "Clothing", links: [
       { label: "Coats & Jackets", href: "/women?cat=Outerwear" },
       { label: "Tops", href: "/women?cat=Tops" },
@@ -26,7 +26,7 @@ const megaMenuData: Record<string, { title: string; links: { label: string; href
       { label: "Heels", href: "/women?cat=Footwear" },
     ]},
   ],
-  "SHOP MEN": [
+  "MEN": [
     { title: "Clothing", links: [
       { label: "Coats & Jackets", href: "/men?cat=Outerwear" },
       { label: "Tops", href: "/men?cat=Tops" },
@@ -53,10 +53,9 @@ export default function Navbar() {
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
   const navItems = [
-    { label: "SHOP WOMEN", href: "/women" },
-    { label: "SHOP MEN", href: "/men" },
-    { label: "FACE", href: "/face" },
-    { label: "SALE", href: "/sale" },
+    { label: "WOMEN", href: "/women" },
+    { label: "MEN", href: "/men" },
+    { label: "BAG", href: "/collections" },
   ];
 
   return (
@@ -107,53 +106,27 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Center logo */}
-        <div style={{ flex: 1 }} />
-        <Link
-          href="/"
-          style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            fontSize: "15px",
-            fontWeight: 400,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase" as const,
-            color: "#000",
-            textDecoration: "none",
-            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-            whiteSpace: "nowrap",
-          }}
-        >
-          SCENTCEPT
-        </Link>
+        {/* Spacer — no center logo */}
         <div style={{ flex: 1 }} />
 
-        {/* Right icons */}
+        {/* Right nav — Acne Studios style text links */}
         <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-          <Link href="/collections" aria-label="Search" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border }}>
-            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="7" strokeWidth={1.3} />
-              <path d="M16.5 16.5L21 21" strokeWidth={1.3} strokeLinecap="round" />
-            </svg>
+          <Link href="/collections" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
+            Search
           </Link>
-          <Link href="/about" aria-label="Account" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border }} className="hidden md:flex">
-            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" strokeWidth={1.3} />
-            </svg>
+          <Link href="/collections" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
+            Both
           </Link>
-          <Link href="/cart" aria-label="Bag" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, position: "relative" }}>
-            <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Link href="/about" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }} className="hidden md:flex">
+            Account
+          </Link>
+          <Link href="/cart" style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 20px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }}>
+            <svg style={{ width: "14px", height: "14px", marginRight: "6px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
               <line x1="3" y1="6" x2="21" y2="6" strokeWidth={1.3} />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M16 10a4 4 0 0 1-8 0" />
             </svg>
-            {totalItems > 0 && (
-              <span style={{ position: "absolute", top: "8px", right: "10px", fontSize: "9px", fontWeight: 500 }}>
-                {totalItems}
-              </span>
-            )}
+            {String(totalItems).padStart(2, "0")}
           </Link>
         </div>
       </div>
