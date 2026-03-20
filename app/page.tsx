@@ -96,10 +96,10 @@ export default function HomePage() {
             sizes="100vw"
           />
           <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
-            <p style={tileTextStyleLight}>2026 가을/겨울 런웨이</p>
+            <p style={tileTextStyle}>2026 가을/겨울 런웨이</p>
           </div>
           <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <p style={tileTextStyleLight}>
+            <p style={tileTextStyle}>
               <span className="hidden md:inline">2026 가을/겨울 런웨이 </span>&gt; 여성 룩
             </p>
           </div>
@@ -110,9 +110,9 @@ export default function HomePage() {
       <section className="grid grid-cols-2 md:grid-cols-4">
         {[
           { name: "여성 진", nameHover: "더 보기", img: "/images/categories/jeans-women.jpg", href: "/women?cat=Bottoms", dark: false },
-          { name: "백", nameHover: "더 보기", img: "/images/categories/bags.jpg", href: "/collections", dark: true },
+          { name: "백", nameHover: "더 보기", img: "/images/categories/bags.jpg", href: "/collections", dark: false },
           { name: "티셔츠", nameHover: "더 보기", img: "/images/categories/tshirts.jpg", href: "/women?cat=Tops", dark: false },
-          { name: "남성 진", nameHover: "더 보기", img: "/images/categories/jeans-men.jpg", href: "/men?cat=Bottoms", dark: true },
+          { name: "남성 진", nameHover: "더 보기", img: "/images/categories/jeans-men.jpg", href: "/men?cat=Bottoms", dark: false },
         ].map((cat) => (
           <Link
             key={cat.name}
