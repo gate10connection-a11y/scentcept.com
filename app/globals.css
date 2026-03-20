@@ -56,7 +56,7 @@
   .ab-t { border-top: 1px solid #e0e0e0 !important; }
 }
 
-/* Logo index — scrolling marquee */
+/* Logo index — Acne Studios style marquee (right to left, smooth) */
 .logo-index {
   position: relative;
   z-index: 5;
@@ -70,28 +70,32 @@
 .logo-marquee {
   display: flex;
   white-space: nowrap;
-  animation: logoScroll 20s linear infinite;
+  will-change: transform;
+  animation: logoScroll 30s linear infinite;
 }
 
 .logo-index span {
   font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(60px, 14vw, 220px);
-  letter-spacing: -0.03em;
+  font-size: clamp(80px, 16vw, 260px);
+  letter-spacing: -0.02em;
   color: #000;
   white-space: nowrap;
   user-select: none;
   display: inline-block;
-  padding-right: 0.5em;
   flex-shrink: 0;
+}
+
+.logo-index span::after {
+  content: '\00a0\00a0\00a0\00a0';
 }
 
 @keyframes logoScroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
