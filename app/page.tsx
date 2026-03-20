@@ -28,7 +28,7 @@ export default function HomePage() {
       <section className="grid grid-cols-1 md:grid-cols-2 relative">
         <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <Image
-            src="/images/tile-women.jpg"
+            src="/images/home/women.jpg"
             alt="여성 신상품"
             fill
             priority
@@ -47,7 +47,7 @@ export default function HomePage() {
 
         <Link href="/men" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <Image
-            src="/images/tile-men.jpg"
+            src="/images/home/men.jpg"
             alt="남성 신상품"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
@@ -68,7 +68,7 @@ export default function HomePage() {
       <section>
         <Link href="/collections" className="group relative block overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <Image
-            src="/images/hero-campaign.jpg"
+            src="/images/campaign/hero.jpg"
             alt="캠페인"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
@@ -89,7 +89,7 @@ export default function HomePage() {
       <section>
         <Link href="/collections" className="group relative block overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <Image
-            src="/images/tile-runway.jpg"
+            src="/images/home/runway.jpg"
             alt="2026 가을/겨울 런웨이"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
@@ -109,10 +109,10 @@ export default function HomePage() {
       {/* Section 4: Key Categories */}
       <section className="grid grid-cols-2 md:grid-cols-4">
         {[
-          { name: "여성 진", nameHover: "더 보기", img: "/images/cat-jeans-w.jpg", href: "/women?cat=Bottoms", dark: false },
-          { name: "백", nameHover: "더 보기", img: "/images/cat-bags.jpg", href: "/collections", dark: true },
-          { name: "티셔츠", nameHover: "더 보기", img: "/images/cat-tshirts.jpg", href: "/women?cat=Tops", dark: false },
-          { name: "남성 진", nameHover: "더 보기", img: "/images/cat-jeans-m.jpg", href: "/men?cat=Bottoms", dark: true },
+          { name: "여성 진", nameHover: "더 보기", img: "/images/categories/jeans-women.jpg", href: "/women?cat=Bottoms", dark: false },
+          { name: "백", nameHover: "더 보기", img: "/images/categories/bags.jpg", href: "/collections", dark: true },
+          { name: "티셔츠", nameHover: "더 보기", img: "/images/categories/tshirts.jpg", href: "/women?cat=Tops", dark: false },
+          { name: "남성 진", nameHover: "더 보기", img: "/images/categories/jeans-men.jpg", href: "/men?cat=Bottoms", dark: true },
         ].map((cat) => (
           <Link
             key={cat.name}
