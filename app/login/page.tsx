@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Already logged in → redirect
+  // 이미 로그인한 경우 계정 페이지로 이동
   if (session) {
     router.push("/account");
     return null;
@@ -33,7 +33,7 @@ export default function LoginPage() {
     });
 
     if (result?.error) {
-      setError("Invalid email or password.");
+      setError("이메일 또는 비밀번호가 올바르지 않습니다.");
     } else {
       router.push("/account");
     }
@@ -48,12 +48,12 @@ export default function LoginPage() {
     <div>
       <div className="flex items-center px-6 md:px-10 h-[44px] ab-b">
         <span style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-          {mode === "login" ? "Login" : "Create Account"}
+          {mode === "login" ? "로그인" : "회원가입"}
         </span>
       </div>
 
       <div className="max-w-[400px] mx-auto px-6 py-16">
-        {/* Toggle */}
+        {/* 로그인 / 회원가입 전환 탭 */}
         <div className="flex mb-10">
           <button
             onClick={() => setMode("login")}
@@ -61,7 +61,7 @@ export default function LoginPage() {
               mode === "login" ? "bg-black text-white" : "text-gray-500 hover:bg-gray-100"
             }`}
           >
-            Login
+            로그인
           </button>
           <button
             onClick={() => setMode("signup")}
@@ -69,11 +69,11 @@ export default function LoginPage() {
               mode === "signup" ? "bg-black text-white" : "text-gray-500 hover:bg-gray-100"
             }`}
           >
-            Sign Up
+            회원가입
           </button>
         </div>
 
-        {/* Google Login */}
+        {/* 구글 로그인 */}
         <button
           onClick={handleGoogle}
           className="w-full h-12 ab flex items-center justify-center gap-3 text-[11px] tracking-[0.05em] hover:bg-gray-50 transition-colors mb-6"
@@ -84,21 +84,21 @@ export default function LoginPage() {
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
           </svg>
-          Continue with Google
+          구글로 로그인
         </button>
 
         <div className="flex items-center gap-4 mb-6">
           <div className="flex-1 h-px bg-gray-200"></div>
-          <span className="text-[10px] text-gray-400 tracking-[0.1em] uppercase">Or</span>
+          <span className="text-[10px] text-gray-400 tracking-[0.1em] uppercase">또는</span>
           <div className="flex-1 h-px bg-gray-200"></div>
         </div>
 
-        {/* Email/Password Form */}
+        {/* 이메일 / 비밀번호 폼 */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === "signup" && (
             <input
               type="text"
-              placeholder="Full name"
+              placeholder="이름"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors"
@@ -107,7 +107,7 @@ export default function LoginPage() {
           )}
           <input
             type="email"
-            placeholder="Email address"
+            placeholder="이메일"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors"
@@ -115,7 +115,7 @@ export default function LoginPage() {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 text-[12px] ab focus:outline-none focus:border-black transition-colors"
@@ -135,10 +135,10 @@ export default function LoginPage() {
             }`}
           >
             {loading
-              ? "Processing..."
+              ? "처리 중..."
               : mode === "login"
-              ? "Login"
-              : "Create Account"}
+              ? "로그인"
+              : "회원가입"}
           </button>
         </form>
 
@@ -147,7 +147,7 @@ export default function LoginPage() {
             href="/"
             className="text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-black transition-colors"
           >
-            Back to Home
+            홈으로 돌아가기
           </Link>
         </div>
       </div>

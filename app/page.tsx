@@ -25,7 +25,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Section 1: Women / Men split tiles — logo overlays this */}
-      <section className="grid grid-cols-1 md:grid-cols-2 relative">
+      <section className="grid grid-cols-2 relative">
         <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <Image
             src="/images/home/women.jpg"
@@ -141,11 +141,11 @@ export default function HomePage() {
 
       {/* Section 5: All Products grid */}
       <section>
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 product-grid-24">
           {allProducts.map((product, i) => (
             <div
               key={product.id}
-              className={`${(i + 1) % 4 !== 0 ? "ab-r" : ""} ab-b`}
+              className="ab-r ab-b"
             >
               <ProductCard product={product} />
             </div>

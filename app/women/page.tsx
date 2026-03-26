@@ -33,9 +33,9 @@ function WomenContent() {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 product-grid-234">
         {filtered.map((product, i) => (
-          <div key={product.id} className={`${(i + 1) % 4 !== 0 ? "ab-r" : ""} ab-b`}>
+          <div key={product.id} className="ab-r ab-b">
             <ProductCard product={product} />
           </div>
         ))}

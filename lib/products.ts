@@ -253,7 +253,7 @@ export async function getNewProductsAsync(): Promise<Product[]> {
 }
 
 export function formatPrice(price: number): string {
-  return `$${String(price).padStart(5, "0")}`;
+  return `$${price.toLocaleString("en-US")}`;
 }
 
 export { urlFor }
