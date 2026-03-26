@@ -7,7 +7,7 @@ export const mockProducts: Product[] = [
   {
     id: "p001",
     name: "Oversized Wool Coat",
-    price: 890,
+    price: 0,
     description: "A relaxed-fit wool coat crafted from a premium double-faced wool blend. Features a notched lapel collar, two front pockets, and a single-button closure.",
     category: "Outerwear",
     images: [
@@ -22,7 +22,7 @@ export const mockProducts: Product[] = [
   {
     id: "p002",
     name: "Mohair Blend Scarf",
-    price: 270,
+    price: 0,
     description: "Lightweight mohair-blend scarf with raw edges. A timeless accessory that elevates any look with understated luxury.",
     category: "Accessories",
     images: [
@@ -37,7 +37,7 @@ export const mockProducts: Product[] = [
   {
     id: "p003",
     name: "Tailored Wool Trousers",
-    price: 410,
+    price: 0,
     description: "Slim-fit tailored trousers in a refined wool blend. A straight leg with a subtle taper, side pockets, and an invisible zip closure.",
     category: "Bottoms",
     images: [
@@ -52,7 +52,7 @@ export const mockProducts: Product[] = [
   {
     id: "p004",
     name: "Relaxed Cotton Shirt",
-    price: 240,
+    price: 0,
     description: "A relaxed-fit shirt in crisp organic cotton poplin. Features a classic collar, single chest pocket, and a slightly longer back hem.",
     category: "Tops",
     images: [
@@ -67,7 +67,7 @@ export const mockProducts: Product[] = [
   {
     id: "p005",
     name: "Leather Tote Bag",
-    price: 620,
+    price: 0,
     description: "A structured tote bag in smooth calf leather. Features an open top, inner zip pocket, and leather handles.",
     category: "Bags",
     images: [
@@ -82,7 +82,7 @@ export const mockProducts: Product[] = [
   {
     id: "p006",
     name: "Merino Knit Sweater",
-    price: 340,
+    price: 0,
     description: "A fine-knit sweater in 100% merino wool. Features a crew neck, ribbed trims, and a slightly relaxed fit.",
     category: "Tops",
     images: [
@@ -97,7 +97,7 @@ export const mockProducts: Product[] = [
   {
     id: "p007",
     name: "Chelsea Ankle Boots",
-    price: 550,
+    price: 0,
     description: "Classic Chelsea boots in polished calf leather. Features an elastic side panel, a rounded toe, and a stacked leather heel.",
     category: "Footwear",
     images: [
@@ -112,7 +112,7 @@ export const mockProducts: Product[] = [
   {
     id: "p008",
     name: "Straight Leg Denim",
-    price: 310,
+    price: 0,
     description: "High-waisted straight-leg jeans in rigid indigo denim. Features a five-pocket construction and a zip fly.",
     category: "Bottoms",
     images: [
@@ -129,7 +129,7 @@ export const mockProducts: Product[] = [
   {
     id: "p009",
     name: "Relaxed Suit Jacket",
-    price: 820,
+    price: 0,
     description: "Single-breasted suit jacket in a soft wool-blend. Relaxed shoulders and a longer length for a contemporary silhouette.",
     category: "Outerwear",
     images: [
@@ -144,7 +144,7 @@ export const mockProducts: Product[] = [
   {
     id: "p010",
     name: "Oversized Cotton Tee",
-    price: 200,
+    price: 0,
     description: "Boxy-fit T-shirt in heavyweight organic cotton. Features a ribbed crew neck and a relaxed drop shoulder.",
     category: "Tops",
     images: [
@@ -160,7 +160,7 @@ export const mockProducts: Product[] = [
   {
     id: "p011",
     name: "Wide Leg Chinos",
-    price: 360,
+    price: 0,
     description: "Wide-leg chinos in brushed cotton twill. Features a high waist with belt loops and a straight leg.",
     category: "Bottoms",
     images: [
@@ -175,7 +175,7 @@ export const mockProducts: Product[] = [
   {
     id: "p012",
     name: "Leather Crossbody Bag",
-    price: 480,
+    price: 0,
     description: "Compact crossbody bag in grained leather. Features an adjustable strap, zip closure, and interior card slots.",
     category: "Bags",
     images: [
