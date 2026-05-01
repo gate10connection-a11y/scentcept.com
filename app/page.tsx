@@ -24,42 +24,36 @@ export default function HomePage() {
       {/* Fixed logo + scroll marker */}
       <HeroSection />
 
-      {/* Section 1: Women / Men split tiles — logo overlays this */}
-      <section className="grid grid-cols-2 relative">
-        <Link href="/women" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
+      {/* Section 1: hero-split — Women / Men (세로 배치) */}
+      <section className="hero-split grid grid-cols-1">
+        {/* Women */}
+        <Link href="/women" className="split-item women group block relative overflow-hidden" style={{ height: "50vh" }}>
           <Image
             src="/images/home/women.jpg"
-            alt="여성 신상품"
+            alt="Women Collection"
             fill
             priority
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            sizes="50vw"
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
           />
           <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
-            <p style={tileTextStyle}>여성</p>
-          </div>
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <p style={tileTextStyle}>
-              <span className="hidden md:inline">여성 </span>&gt; 신상품
-            </p>
+            <p style={tileTextStyleLight}>여성</p>
           </div>
         </Link>
 
-        <Link href="/men" className="group relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
+        {/* Men */}
+        <Link href="/men" className="split-item men group block relative overflow-hidden" style={{ height: "50vh" }}>
           <Image
-            src="/images/home/man.jpg"
-            alt="남성 신상품"
+            src="/images/home/man_new.png"
+            alt="Men Collection"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            sizes="50vw"
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
           />
           <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
             <p style={tileTextStyleLight}>남성</p>
-          </div>
-          <div className="absolute top-0 left-0 p-3 md:p-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <p style={tileTextStyleLight}>
-              <span className="hidden md:inline">남성 </span>&gt; 신상품
-            </p>
           </div>
         </Link>
       </section>
@@ -73,6 +67,7 @@ export default function HomePage() {
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
             sizes="100vw"
+            style={{ objectPosition: "center 15%" }}
           />
           <div className="absolute top-0 left-0 p-3 md:p-4 z-10">
             <p style={tileTextStyleLight}>캠페인 더 보기</p>

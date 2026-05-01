@@ -29,7 +29,7 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <Navbar />
-            <main className="pt-[44px] min-h-screen">{children}</main>
+            <main className="pt-[48px] min-h-screen">{children}</main>
             <NewsletterSection />
             <Footer />
           </CartProvider>

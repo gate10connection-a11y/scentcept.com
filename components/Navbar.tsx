@@ -9,61 +9,61 @@ import { useState, useEffect } from "react";
 const border = "1px solid #e0e0e0";
 
 // ─────────────────────────────────────────────
-// 메가 메뉴 데이터
-// key는 navItems label과 일치해야 함
+// 메가 메뉴 데이터 (WOMEN / MEN 데스크톱 전용)
 // ─────────────────────────────────────────────
 const megaMenuData: Record<string, { title: string; links: { label: string; href: string }[] }[]> = {
-  "WOMEN": [
-    { title: "의류", links: [
-      { label: "코트 & 자켓", href: "/women?cat=Outerwear" },
-      { label: "상의", href: "/women?cat=Tops" },
-      { label: "니트", href: "/women?cat=Tops" },
-      { label: "바지", href: "/women?cat=Bottoms" },
-      { label: "데님", href: "/women?cat=Bottoms" },
-    ]},
-    { title: "신발", links: [
-      { label: "부츠", href: "/women?cat=Footwear" },
-      { label: "스니커즈", href: "/women?cat=Footwear" },
-      { label: "힐", href: "/women?cat=Footwear" },
-    ]},
+  WOMEN: [
+    {
+      title: "의류",
+      links: [
+        { label: "코트 & 자켓", href: "/women?cat=Outerwear" },
+        { label: "상의", href: "/women?cat=Tops" },
+        { label: "니트", href: "/women?cat=Tops" },
+        { label: "바지", href: "/women?cat=Bottoms" },
+        { label: "데님", href: "/women?cat=Bottoms" },
+      ],
+    },
+    {
+      title: "신발",
+      links: [
+        { label: "부츠", href: "/women?cat=Footwear" },
+        { label: "스니커즈", href: "/women?cat=Footwear" },
+        { label: "힐", href: "/women?cat=Footwear" },
+      ],
+    },
   ],
-  "MEN": [
-    { title: "의류", links: [
-      { label: "코트 & 자켓", href: "/men?cat=Outerwear" },
-      { label: "상의", href: "/men?cat=Tops" },
-      { label: "니트", href: "/men?cat=Tops" },
-      { label: "바지", href: "/men?cat=Bottoms" },
-      { label: "데님", href: "/men?cat=Bottoms" },
-    ]},
-    { title: "신발", links: [
-      { label: "부츠", href: "/men?cat=Footwear" },
-      { label: "스니커즈", href: "/men?cat=Footwear" },
-      { label: "로퍼", href: "/men?cat=Footwear" },
-    ]},
-  ],
-  "BAG": [
-    { title: "여성 가방", links: [
-      { label: "토트백", href: "/collections?cat=Bags&gender=women" },
-      { label: "숄더백", href: "/collections?cat=Bags&gender=women" },
-      { label: "클러치", href: "/collections?cat=Bags&gender=women" },
-    ]},
-    { title: "남성 가방", links: [
-      { label: "백팩", href: "/collections?cat=Bags&gender=men" },
-      { label: "토트백", href: "/collections?cat=Bags&gender=men" },
-    ]},
-  ],
-  "ACCESSORY": [
-    { title: "여성 액세서리", links: [
-      { label: "스카프", href: "/collections?cat=Accessories&gender=women" },
-      { label: "주얼리", href: "/collections?cat=Accessories&gender=women" },
-      { label: "지갑", href: "/collections?cat=Accessories&gender=women" },
-    ]},
-    { title: "남성 액세서리", links: [
-      { label: "스카프", href: "/collections?cat=Accessories&gender=men" },
-      { label: "지갑", href: "/collections?cat=Accessories&gender=men" },
-    ]},
+  MEN: [
+    {
+      title: "의류",
+      links: [
+        { label: "코트 & 자켓", href: "/men?cat=Outerwear" },
+        { label: "상의", href: "/men?cat=Tops" },
+        { label: "니트", href: "/men?cat=Tops" },
+        { label: "바지", href: "/men?cat=Bottoms" },
+        { label: "데님", href: "/men?cat=Bottoms" },
+      ],
+    },
+    {
+      title: "신발",
+      links: [
+        { label: "부츠", href: "/men?cat=Footwear" },
+        { label: "스니커즈", href: "/men?cat=Footwear" },
+        { label: "로퍼", href: "/men?cat=Footwear" },
+      ],
+    },
   ],
 };
+
+// 모바일 햄버거 메뉴 항목 (BAG / ACCESSORY 포함)
+const mobileMenuItems = [
+  { label: "HOME", href: "/" },
+  { label: "WOMEN", href: "/women" },
+  { label: "MEN", href: "/men" },
+  { label: "BAG", href: "/collections?cat=Bags" },
+  { label: "ACCESSORY", href: "/collections?cat=Accessories" },
+  { label: "COLLECTIONS", href: "/collections" },
+  { label: "SALE", href: "/collections?sale=true" },
+];
 
 export default function Navbar() {
   const { totalItems } = useCart();
@@ -73,169 +73,254 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
 
-  // 메뉴 열릴 때 body 스크롤 방지
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
+    };
   }, [menuOpen]);
 
-  // 페이지 이동 시 메뉴 닫기
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
-
-  const navItems = [
-    { label: "WOMEN", href: "/women" },
-    { label: "MEN", href: "/men" },
-    { label: "BAG", href: "/collections?cat=Bags" },
-    { label: "ACCESSORY", href: "/collections?cat=Accessories" },
-  ];
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
+      {/* ── MAIN HEADER ── */}
       <header
-        style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, backgroundColor: "#fff" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          backgroundColor: "#fff",
+        }}
         onMouseLeave={() => setActiveMega(null)}
       >
-        {/* 메인 네비게이션 바 */}
-        <div style={{ display: "flex", alignItems: "center", height: "44px", borderBottom: border }}>
-
-          {/* 모바일 햄버거 버튼 */}
-          <button
-            style={{
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              padding: "0 18px",
-              borderRight: border,
-              background: "none",
-              cursor: "pointer",
-              flexShrink: 0,
-            }}
-            className="md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
-          >
-            <svg
-              style={{ width: "16px", height: "16px", transition: "opacity 0.2s" }}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-
-          {/* 데스크톱 좌측 메뉴 */}
-          <nav style={{ display: "flex", alignItems: "center", height: "100%" }} className="hidden md:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0 24px",
-                  fontSize: "10px",
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  borderRight: border,
-                  color: "#000",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={() => setActiveMega(megaMenuData[item.label] ? item.label : null)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* 중앙 로고 */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            height: "48px",
+            borderBottom: border,
+            position: "relative",
+          }}
+        >
+          {/* ── header-left: hamburger (mobile) + desktop-nav (WOMEN/MEN) ── */}
           <div
             style={{
-              flex: 1,
               display: "flex",
-              justifyContent: "center",
               alignItems: "center",
               height: "100%",
-              borderRight: border,
-              minWidth: 0,
-              overflow: "hidden",
+              flexShrink: 0,
             }}
-            className="md:border-l"
           >
-            {!isHome ? (
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="text-[9px] md:text-[11px] tracking-[0.06em] md:tracking-[0.12em]"
-                style={{ fontWeight: 600, color: "#000", textDecoration: "none", whiteSpace: "nowrap" }}
+            {/* Hamburger — mobile only */}
+            <button
+              className="md:hidden"
+              style={{
+                width: "44px",
+                height: "48px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                paddingLeft: "10px",
+              }}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+            >
+              <svg
+                style={{ width: "20px", height: "20px" }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                SCENTCEPT
-              </Link>
-            ) : (
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="text-[9px] md:text-[11px] tracking-[0.06em] md:tracking-[0.12em]"
-                style={{ fontWeight: 600, color: "#000", textDecoration: "none", whiteSpace: "nowrap", opacity: 0, pointerEvents: "none" }}
-                aria-hidden="true"
-              >
-                SCENTCEPT
-              </Link>
-            )}
+                {menuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+
+            {/* desktop-nav: WOMEN / MEN — desktop only, BAG/ACCESSORY excluded */}
+            <nav
+              className="hidden md:flex"
+              style={{ height: "100%", alignItems: "center" }}
+            >
+              {(["WOMEN", "MEN"] as const).map((label) => (
+                <Link
+                  key={label}
+                  href={`/${label.toLowerCase()}`}
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 24px",
+                    fontSize: "10px",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    borderRight: border,
+                    color: "#000",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={() => setActiveMega(label)}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          {/* 우측 유틸리티 메뉴 */}
-          <div style={{ display: "flex", alignItems: "center", height: "100%", flexShrink: 0 }}>
+          {/* ── Logo — absolute center, always ── */}
+          <h1
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              margin: 0,
+              lineHeight: 1,
+              zIndex: 1,
+            }}
+          >
+            <Link
+              href="/"
+              onClick={closeMenu}
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.12em",
+                fontWeight: 600,
+                color: "#000",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                opacity: isHome ? 0 : 1,
+                pointerEvents: isHome ? "none" : "auto",
+                transition: "opacity 0.2s",
+              }}
+            >
+              SCENTCEPT
+            </Link>
+          </h1>
 
-            {/* 검색 아이콘 — 데스크톱만 표시 */}
+          {/* ── header-right: SEARCH + account + BAG ── */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              flexShrink: 0,
+              marginLeft: "auto",
+            }}
+          >
+            {/* SEARCH — desktop: "SEARCH" text / mobile: 돋보기 아이콘 */}
             <Link
               href="/collections"
-              style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 18px", borderLeft: border, color: "#000", textDecoration: "none" }}
-              className="hidden md:flex"
               aria-label="검색"
+              style={{
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                borderLeft: border,
+                color: "#000",
+                textDecoration: "none",
+              }}
             >
-              <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" strokeWidth={1.4} />
-                <path strokeLinecap="round" strokeWidth={1.4} d="M16.5 16.5L21 21" />
-              </svg>
+              {/* Desktop */}
+              <span
+                className="hidden md:flex items-center"
+                style={{ padding: "0 18px", fontSize: "10px", letterSpacing: "0.1em" }}
+              >
+                SEARCH
+              </span>
+              {/* Mobile */}
+              <span
+                className="md:hidden flex items-center justify-center"
+                style={{ width: "40px", height: "48px" }}
+              >
+                <svg
+                  style={{ width: "19px", height: "19px" }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="11" cy="11" r="7" strokeWidth={1.5} />
+                  <path strokeLinecap="round" strokeWidth={1.5} d="M16.5 16.5L21 21" />
+                </svg>
+              </span>
             </Link>
 
-            {/* 컬렉션 링크 — 데스크톱만 표시 */}
-            <Link
-              href="/collections"
-              style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 18px", borderLeft: border, fontSize: "10px", letterSpacing: "0.05em", color: "#000", textDecoration: "none" }}
-              className="hidden md:flex"
-            >
-              컬렉션
-            </Link>
-
-            {/* 로그인/계정 아이콘 — 데스크톱만 표시 */}
+            {/* Account — 사람 아이콘 (desktop + mobile) */}
             <Link
               href={session ? "/account" : "/login"}
-              style={{ height: "100%", display: "flex", alignItems: "center", padding: "0 18px", borderLeft: border, color: "#000", textDecoration: "none" }}
-              className="hidden md:flex"
               aria-label={session ? "계정" : "로그인"}
+              style={{
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                borderLeft: border,
+                color: "#000",
+                textDecoration: "none",
+              }}
             >
-              <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" strokeWidth={1.4} />
-              </svg>
+              {/* Desktop */}
+              <span
+                className="hidden md:flex items-center"
+                style={{ padding: "0 16px" }}
+              >
+                <svg
+                  style={{ width: "15px", height: "15px" }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.4}
+                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                  />
+                  <circle cx="12" cy="7" r="4" strokeWidth={1.4} />
+                </svg>
+              </span>
+              {/* Mobile */}
+              <span
+                className="md:hidden flex items-center justify-center"
+                style={{ width: "40px", height: "48px" }}
+              >
+                <svg
+                  style={{ width: "19px", height: "19px" }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                  />
+                  <circle cx="12" cy="7" r="4" strokeWidth={1.5} />
+                </svg>
+              </span>
             </Link>
 
-            {/* 장바구니 아이콘 — 모바일/데스크톱 모두 표시 */}
+            {/* BAG — desktop: "BAG (00)" / mobile: 가방 아이콘 */}
             <Link
               href="/cart"
               onClick={closeMenu}
@@ -243,43 +328,95 @@ export default function Navbar() {
                 height: "100%",
                 display: "flex",
                 alignItems: "center",
-                padding: "0 18px",
-                fontSize: "10px",
-                letterSpacing: "0.05em",
+                borderLeft: border,
                 color: "#000",
                 textDecoration: "none",
-                borderLeft: border,
-                gap: "5px",
               }}
             >
-              <svg style={{ width: "15px", height: "15px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                <line x1="3" y1="6" x2="21" y2="6" strokeWidth={1.3} />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M16 10a4 4 0 0 1-8 0" />
-              </svg>
-              <span className="hidden md:inline">{String(totalItems).padStart(2, "0")}</span>
-              {totalItems > 0 && (
-                <span className="md:hidden text-[10px]">{totalItems}</span>
-              )}
+              {/* Desktop: BAG text */}
+              <span
+                className="hidden md:flex items-center"
+                style={{
+                  padding: "0 18px",
+                  fontSize: "10px",
+                  letterSpacing: "0.05em",
+                  gap: "4px",
+                }}
+              >
+                BAG ({String(totalItems).padStart(2, "0")})
+              </span>
+              {/* Mobile: 가방 아이콘 */}
+              <span
+                className="md:hidden flex items-center"
+                style={{ padding: "0 10px", gap: "2px", height: "48px" }}
+              >
+                <svg
+                  style={{ width: "19px", height: "19px" }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                  />
+                  <line x1="3" y1="6" x2="21" y2="6" strokeWidth={1.5} />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M16 10a4 4 0 0 1-8 0"
+                  />
+                </svg>
+                {totalItems > 0 && (
+                  <span style={{ fontSize: "11px", fontWeight: 500 }}>{totalItems}</span>
+                )}
+              </span>
             </Link>
           </div>
         </div>
 
-        {/* 데스크톱 메가 메뉴 드롭다운 */}
+        {/* ── Desktop mega menu dropdown ── */}
         {activeMega && megaMenuData[activeMega] && (
           <div
-            style={{ position: "absolute", left: 0, right: 0, backgroundColor: "#fff", borderBottom: border, zIndex: 40 }}
             className="hidden md:block"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              backgroundColor: "#fff",
+              borderBottom: border,
+              zIndex: 40,
+            }}
             onMouseEnter={() => setActiveMega(activeMega)}
             onMouseLeave={() => setActiveMega(null)}
           >
             <div style={{ display: "flex", padding: "32px 40px", gap: "64px" }}>
               {megaMenuData[activeMega].map((col) => (
                 <div key={col.title}>
-                  <p style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginBottom: "16px" }}>
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      marginBottom: "16px",
+                    }}
+                  >
                     {col.title}
                   </p>
-                  <ul style={{ display: "flex", flexDirection: "column", gap: "10px", listStyle: "none", padding: 0, margin: 0 }}>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                    }}
+                  >
                     {col.links.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -299,12 +436,12 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* 모바일 풀스크린 오버레이 메뉴 (Acne Studios 스타일) */}
+      {/* ── Mobile fullscreen overlay menu ── */}
       <div
         className="md:hidden"
         style={{
           position: "fixed",
-          top: "44px",
+          top: "48px",
           left: 0,
           right: 0,
           bottom: 0,
@@ -313,42 +450,26 @@ export default function Navbar() {
           overflowY: "auto",
           transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
           opacity: menuOpen ? 1 : 0,
-          transition: "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease",
+          transition:
+            "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease",
           pointerEvents: menuOpen ? "auto" : "none",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        {/* HOME 링크 — 최상단 */}
-        <Link
-          href="/"
-          onClick={closeMenu}
-          style={{
-            display: "block",
-            padding: "28px 32px",
-            fontSize: "13px",
-            fontWeight: 500,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#000",
-            textDecoration: "none",
-            borderBottom: border,
-          }}
-        >
-          HOME
-        </Link>
-
-        {/* 주요 카테고리 */}
-        <nav>
-          {navItems.map((item) => (
+        {/* 주요 메뉴 — BAG / ACCESSORY 포함, 컬렉션 텍스트 없음 */}
+        <nav style={{ flex: 1 }}>
+          {mobileMenuItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
               onClick={closeMenu}
               style={{
                 display: "block",
-                padding: "28px 32px",
-                fontSize: "22px",
+                padding: "22px 28px",
+                fontSize: "24px",
                 fontWeight: 400,
-                letterSpacing: "0.02em",
+                letterSpacing: "0.01em",
                 color: "#000",
                 textDecoration: "none",
                 borderBottom: border,
@@ -359,49 +480,57 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* 보조 메뉴 */}
-        <div style={{ paddingTop: "8px" }}>
+        {/* 하단: 로그인 / 회원가입 */}
+        <div
+          style={{
+            borderTop: border,
+            padding: "20px 28px",
+            display: "flex",
+            gap: "12px",
+          }}
+        >
           <Link
-            href="/collections"
+            href="/login"
             onClick={closeMenu}
             style={{
-              display: "block",
-              padding: "18px 32px",
-              fontSize: "11px",
-              fontWeight: 500,
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "48px",
+              fontSize: "10px",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#666",
+              color: "#000",
               textDecoration: "none",
-              borderBottom: border,
+              border: "1px solid #000",
             }}
           >
-            컬렉션
+            로그인
           </Link>
           <Link
-            href={session ? "/account" : "/login"}
+            href="/login?mode=signup"
             onClick={closeMenu}
             style={{
-              display: "block",
-              padding: "18px 32px",
-              fontSize: "11px",
-              fontWeight: 500,
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "48px",
+              fontSize: "10px",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#666",
+              color: "#fff",
               textDecoration: "none",
-              borderBottom: border,
+              backgroundColor: "#000",
             }}
           >
-            {session ? session.user?.name?.split(" ")[0] || "계정" : "로그인"}
+            회원가입
           </Link>
         </div>
-
-        {/* 하단 여백 */}
-        <div style={{ height: "60px" }} />
       </div>
 
-      {/* 오버레이 배경 (메뉴 외부 탭 시 닫기) */}
+      {/* 오버레이 배경 (외부 탭 시 닫기) */}
       {menuOpen && (
         <div
           className="md:hidden"
